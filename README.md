@@ -1,32 +1,63 @@
-# Human-to-Robot Motion
-This project focuses on simulating a robotic arm's movement based on human arm motion tracked by a camera. MediaPipe detects motion and sends joint data to a MATLAB/SIMULINK model. Inverse Kinematics calculates joint angles, verified by Forward Kinematics. Trajectory Planning and Velocity Control improve movement efficiency, with results showing joint positions, angles, and velocities, along with a visual movement display.
+# Transformation of Human Movement to Robot Motion
+This project focuses on simulating a robotic arm's movement based on human arm motion tracked by a camera. MediaPipe detects motion and sends joint data to a MATLAB/SIMULINK model. Inverse Kinematics calculates joint angles, verified by Forward Kinematics. Trajectory Planning anvelocityty Control improve movement efficiency, with results showing joint positions, angles, and velocities, along with a visual movement display.
 ## Overview
-vdo
-## Description
-- **Inverse Kinematic**
+### Transformation of Human Movement to Robot Motion Demo
+### Description
+- **Mediapipe**
+- **Inverse Kinematics**
 - **Forward Kinematics**
 - **Differential Kinematics**
 - **Trajectory Planning**
 - **Robot Modeling**
-- **Dynamics**
+- **Dynamic**
 ## Table of Contents
 
 - [Overview](#overview)
-- [Description](#description)
+   * [Transformation of Human Movement to Robot Motion Demo](#transformationofhumanmovementtorobotmotion)
+   * [Description](#description)
 - [Installation](#installation)
-- [Component](#component)
+- [Methodology](#methodology)
+   * [Image Capture](#imagecapture)
+   * [Dynamic Calculation](#dynamiccalculation)
+	   * [Inverse Kinematics](#dynamiccalculation)
+	   * [Forward Kinematics](#dynamiccalculation)
+	   * [Differential Kinematics](#dynamiccalculation)
+	   * [Trajectory Planning](#dynamiccalculation)
+	   * [Robot Modeling](#dynamiccalculation)
+	   * [Dynamic](#dynamiccalculation)
+   * [ 3D Visualization](#3dvisualization)
+   * [ System Architecture Diagram](#systemarchitecturediagram)
 - [User Guide](#userguide)
 - [Demo & Result](#demo&result)
 - [Conclusion](#conclusion)
 - [References](#references)
 
 ## Installation
+ Use `pip` to install the libraries. Open a terminal and run the following commands:
+### OpenCV (cv2)
+` pip install opencv-python`
+### Mediapipe
+`pip install mediapipe`
+### NumPy
+`pip install numpy`
+##  Methodology
+### Image Capture
+### Dynamic Calculation
 
-##  Component
+- **Inverse Kinematics**
+- **Forward Kinematics**
+- **Differential Kinematics**
+- **Trajectory Planning**
+- **Robot Modeling**
+- **Dynamic**
+### 3D Visualization
+### System Architecture Diagram
 
 ## User Guide
 
 ## Demo & Result
+### Example
+### Validation
 
 ## Conclusion
 
