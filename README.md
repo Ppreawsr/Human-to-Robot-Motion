@@ -31,7 +31,7 @@ This project focuses on simulating a robotic arm's movement based on human arm m
 - [Demo & Result](#demo&result)
 - [Conclusion](#conclusion)
 - [References](#references)
-
+---
 ## Installation
  Use `pip` to install the libraries. Open a terminal and run the following commands:
 ### OpenCV (cv2)
@@ -40,34 +40,104 @@ This project focuses on simulating a robotic arm's movement based on human arm m
 `pip install mediapipe`
 ### NumPy
 `pip install numpy`
+
+---
 ##  Methodology
 ### Image Capture
+// code
+//description
+
+---
 ### Dynamic Calculation
 
  Variable Mapping and Meanings
--   `x,y` = `(xₑ,yₑ)` - The end-effector position.
--   `phi `= `γ` - The orientation angle of the end-effector.
--   `L1`, `L2`, `L3`:
--   `L1` = `L₁₂` ​- Length of the first link.
--   `L2`= `L₂₃` - Length of the second link.
--   `L3`= `L₃₄` - Length of the third link (to the end-effector).
--   `xw`, `yw`= `(x₃,y₃)` - Coordinates of the wrist point.
--   `theta1` = `θ₁` - First joint angle.
--   `theta2` = `θ₂` - Second joint angle.
--   `theta3`= `θ₃​` - Third joint angle (orientation)
-- **Inverse Kinematics**
-   * **Calculate the Wrist Position** 
+-  The end-effector position. $$x,y = (xₑ,yₑ)$$ 
+-   The orientation angle of the end-effector.
+$$phi = γ$$ 
+-   $L1, L2, L3 :$
+Length of the first link. $$ L1 = L₁₂ $$ ​
+Length of the second link.  $$L2 = L₂₃ $$
+Length of the third link (to the end-effector) $$ L3 = L₃₄  $$
+-  Coordinates of the wrist point. $$ xw,  yw= (x₃,y₃) $$
+-   First joint angle : `theta1` = $θ₁$ 
+-   Second joint angle : `theta2` = $θ₂$
+-   Third joint angle (orientation) : `theta3`= $θ₃$  
+---
+**Inverse Kinematics**
+Determine the joint angles $(\theta_1, \theta_2, \theta_3 )$ given the end-effector position $(x, y)$ and orientation $(\phi)$
+
+- Calculate the Wrist Position
+
+    To calculate the wrist position $x_w, y_w$, subtract the contribution of the third link from the given end-effector position $(x, y)$:
+
+$$x_w = x - L_3 \cos(\phi)$$
+$$y_w = y - L_3 \sin(\phi)$$
 
 
-- **Forward Kinematics**
-- **Differential Kinematics**
-- **Trajectory Planning**
-- **Robot Modeling**
-- **Dynamic**
+- Calculate the Distance to the Wrist Point
+   Find the distance $r$ between the origin (base of the manipulator) and the wrist point $x_w, y_w$:
+$$r = \sqrt{x_w^2 + y_w^2}$$
+
+- Check Reachability
+  Verify if the target position is reachable by checking the following conditions:
+If $r > L_1 + L_2$, the target is outside the reachable workspace.
+ If $r < |L_1 - L_2|$, the target is too close and also unreachable.
+
+-  Calculate $\theta_2$
+   Determine the second joint angle $\theta_2$ using the cosine rule for the triangle formed by the base, wrist point, and second joint:
+
+$$
+\cos(\theta_2) = \frac{r^2 - L_1^2 - L_2^2}{2 L_1 L_2}
+$$
+
+$$
+\sin(\theta_2) = \sqrt{1 - \cos^2(\theta_2)}
+$$
+
+$$
+\theta_2 = \tan^{-1}\left(\frac{\sin(\theta_2)}{\cos(\theta_2)}\right)
+$$
+
+-  Calculate $\theta_1$
+To calculate the first joint angle  $\theta_1$, determine the angles $( \alpha )$ and $( \beta )$:
+$$\alpha = \tan^{-1}\left(\frac{y_w}{x_w}\right)$$
+$$\beta = \tan^{-1}\left(\frac{L_2 \sin(\theta_2)}{L_1 + L_2 \cos(\theta_2)}\right)$$
+$$\theta_1 = \alpha - \beta$$
+- Calculate $\theta_3$
+Finally, calculate the third joint angle $\theta_3$ as the orientation adjustment needed to align the end-effector with $(\phi)$:
+$$\theta_3 = \phi - (\theta_1 + \theta_2)$$
+- Handle Singularities
+Check for singularities to ensure valid calculations
+   - If $\sin(\theta_2) = 0$, the arm is fully extended or fully folded.
+Ensure all computed angles are within valid ranges.
+
+
+---
+**Forward Kinematics**
+
+---
+ **Differential Kinematics**
+
+---
+ **Trajectory Planning**
+ 
+ ---
+**Robot Modeling**
+
+---
+**Dynamic**
+
+----
 ### 3D Visualization
+
+---
 ### System Architecture Diagram
 
+---
+
 ## User Guide
+
+
 
 ## Demo & Result
 ### Example
@@ -75,6 +145,7 @@ This project focuses on simulating a robotic arm's movement based on human arm m
 
 ## Conclusion
 
+---
 ## References
 [1] Altayeb, Muneera. (2023). Hand Gestures Replicating Robot Arm based on MediaPipe. Indonesian Journal of Electrical Engineering and Informatics (IJEEI), 11(3), 727–737. https://doi.org/10.52549/ijeei.v11i3.4491
 
