@@ -7,6 +7,21 @@ This project focuses on simulating a robotic arm's movement based on human arm m
 // demo picture 
 ### Diagram
 // diagram picture
+### Objectives
+- To study the transformation of human arm movements into the simulated movement of a robotic arm model.
+- To explore the use of MediaPipe and MATLAB software.
+### Project Scope  
+A. Input from Human Arm Motion Capture  
+- MediaPipe reads the joint positions of only one arm.  
+- Input is based solely on position, without considering velocity or acceleration in the actual system.  
+
+B. Number of Joints in the Robotic Arm Model  
+- The model consists of the shoulder, elbow, wrist, and the base of the middle finger only.  
+- The simulated model has no more than 3 degrees of freedom (DOF).  
+
+C. Visualization  
+- Visualize the model as static images for display purposes.  
+- Real-time movement is not required for visualization.  
 ### Description
 - **Motion Capture**
 - **Inverse Kinematics**
