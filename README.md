@@ -190,8 +190,8 @@ Output :
 Singularity is also calculated and excluded to prevent error in this calculation as there are 2 main conditions
 
 
-Condition 1 : det(J) = 0
-- For a 3-DOF planar robot with link lengths L1, L2, L3​ and joint angles θ1, θ2, θ3 
+Condition 1 : $det(J) = 0$
+- For a 3-DOF planar robot with link lengths L1, L2, L3​ and joint angles $θ1, θ2, θ3$
 the Jacobian matrix is:
 
 	J = 
@@ -202,13 +202,13 @@ the Jacobian matrix is:
 	0, 							0,				0
 
 
-	det(J) = L_1L_2sin(θ2)
+	$$det(J) = L_1L_2sin(θ_2)$$
 
 
-- Meaning sin(θ2) can’t be equal 0
+- Meaning $sin(θ_2)$ can’t be equal 0
 
 Condition 2 : Target out of reach
-- This is simply calculated with total length of L1, L2 to see if wrist position stay within workspace
+- This is simply calculated with total length of $L1, L2$ to see if wrist position stay within workspace
 - The calculation is mentioned above
 
 
@@ -218,8 +218,8 @@ $$\theta_2 = \tan^{-1}\left(\frac{\sin(\theta_2)}{\cos(\theta_2)}\right)$$
 $$\theta_3 = \phi - (\theta_1 + \theta_2)$$
 
 Singularities
-- sin(θ2) can’t be equal 0
-- r > L_1 + L_2, r < |L_1 - L_2|
+- $sin(θ_2)$ can’t be equal 0
+- $r > L_1 + L_2, r < |L_1 - L_2|$
 ---
 
 #### **Trajectory Planning**
@@ -280,18 +280,24 @@ Substitute $I_i = \frac{1}{3} m_i L_i^2
 Assume the motors can apply a total torque $T_{\text{max}}$ on the system. If the motors can apply $T_{\text{max}} = 50 \, \text{Nm}$, we can estimate $(a_{\text{max}})$. 
 Using the rotational analog of Newton's second law 
 $$\alpha = \frac{T}{I}$$
- $$a_{\text{max}} = \alpha \cdot L_{\text{eff}$$
+ $$a_{\text{max}} = \alpha \cdot L_{\text{eff}}$$
 
   Where $L_{\text{eff}}$ is the effective length of the links (weighted average of lengths)
   $$L_{\text{eff}} = \frac{\sum m_i L_i}{\sum m_i} = \frac{1 \cdot 5 + 1 \cdot 4 + 1 \cdot 1}{3} = 3.33 \, \text{m}$$ 
+  
   Substitute values: 
+  
   $$\alpha = \frac{50}{14} \approx 3.57 \, \text{rad/s}^2$$ 
+  
   $$a_{\text{max}} = \alpha \cdot L_{\text{eff}}$$ 
+  
   $$\approx 3.57 \cdot 3.33 \approx 11.9 \, \text{m/s}^2$$ 
+  
   4. Maximum Velocity
   The maximum velocity $(v_{\text{max}})$ depends on
    *  Link lengths: Longer links result in higher end-effector velocities for the same joint velocities. 
    *  Practical constraints (e.g., motor limits, safety). 
+  
   Assume the robot moves through its maximum angular displacement $( \theta_{\text{max}} = 90^\circ = \frac{\pi}{2} \, \text{rad} )$ in 1 second:
   $$v_{\text{max}} = \omega_{\text{max}} \cdot L_{\text{eff}}$$ 
   With $\omega_{\text{max}} = \frac{\pi}{2} \, \text{rad/s}:$
