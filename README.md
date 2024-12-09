@@ -1,3 +1,4 @@
+
 # Transformation of Human Movement to Robot Motion
 This project focuses on simulating a robotic arm's movement based on human arm motion tracked by a camera. MediaPipe detects motion and sends joint data to a MATLAB/SIMULINK model. Inverse Kinematics calculates joint angles, verified by Forward Kinematics. Trajectory planning and velocity control improve movement efficiency, with results showing joint positions, angles, and velocities, along with a visual movement display.
 
@@ -17,7 +18,7 @@ A. Input from Human Arm Motion Capture
 
 B. Number of Joints in the Robotic Arm Model  
 - The model consists of the shoulder, elbow, wrist, and the base of the middle finger only.  
-- The simulated model has no more than 3 degrees of freedom (DOF).  
+- The simulated model has no more than 3 degrees of freedom. (DOF)
 
 C. Visualization  
 - Visualize the model as static images for display purposes.  
@@ -27,7 +28,7 @@ C. Visualization
   - Read the joint positions of only one arm.
   - Receive input based on position without considering velocity or acceleration in the actual system.
 - **Inverse Kinematics**
-  - Transform the task space into (q1, q2, q3).
+  - Transform the task space into $(q1, q2, q3)$.
 - **Trajectory Planning**
   - Design the motion angle graph to be smooth.
 - **Inverse Dynamics**
@@ -52,28 +53,27 @@ C. Visualization
 ## Table of Contents
 
 - [Overview](#overview)
-   * [Transformation of Human Movement to Robot Motion Demo](#transformationofhumanmovementtorobotmotion)
+   * [Transformation of Human Movement to Robot Motion Demo](#transformation-of-human-movement-to-robot-motion)
    * [Description](#description)
 - [Installation](#installation)
 - [Methodology](#methodology)
-   * [Image Capture](#imagecapture)
+   * [Image Capture](#image-capture)
    * [Calculation](#calculation)
-	   * [Motion Capture](#motioncapture)
-	   * [Inverse Kinematics](#inversekinematics)
-	   * [Trajectory Planning](#trajectoryplanning)
-	   * [Motion Control](#motioncontrol)
-	   * [Inverse Dynamics](#inversedynamics)
-	   * [Robot Modeling](#robotmodeling)
-	   * [Forward Kinematics](#forwardkinematics)
-   * [ 3D Visualization](#3dvisualization)
-   * [ System Architecture Diagram](#systemarchitecturediagram)
-- [User Guide](#userguide)
-- [Demo & Result](#demo&result)
+   * [Motion Capture](#motion-capture)
+	   * [Inverse Kinematics](#inverse-kinematics)
+	   * [Trajectory Planning](#trajectory-planning)
+	   * [Motion Control](#motion-control)
+	   * [Inverse Dynamics](#inverse-dynamics)
+	   * [Robot Modeling](#robot-modeling)
+	   * [Forward Kinematics](#forward-kinematics)
+   * [ 3D Visualization](#3d-visualization)
+- [User Guide](#user-guide)
+- [Demo & Result](#demo-&-result)
 - [Conclusion](#conclusion)
 - [References](#references)
 ---
 ## Installation
- Use `pip` to install the libraries. Open a terminal and run the following commands:
+ Use `pip` to install the libraries. Open a terminal and run the following commands
 ### OpenCV (cv2)
 ` pip install opencv-python`
 ### Mediapipe
@@ -183,26 +183,22 @@ Input :
 - End-effector orientation $(phi)$
 - Elbow position $(x,y)$ : determining pose for multiple solution cases.
 - Link Length $(L1, L2, L3)$ : length of all 3 link of the model robot (5, 4 and 1 meters)
+
 Output :
 - Orientation : $q1, q2, q3$
 
 
-Singularity is also calculated and excluded to prevent error in this calculation as there are 2 main conditions
+**Singularity** is also calculated and excluded to prevent error in this calculation as there are 2 main conditions
 
 
 Condition 1 : $det(J) = 0$
 - For a 3-DOF planar robot with link lengths L1, L2, L3​ and joint angles $θ1, θ2, θ3$
 the Jacobian matrix is:
 
-	J = 
-	sin(θ1)(L_1 + L_2cos(θ2)) - sin(θ1 + θ2)L_2, 		-sin(θ1 + θ2)L_2, 		0 \\
-
-	cos(θ1)(L_1 + L_2cos(θ2)) + cos(θ1 + θ2)L_2, 		cos(θ1 + θ2)L_2, 		0 \\
-
-	0, 							0,				0
+$$ J = \begin{bmatrix} \sin(\theta_1)(L_1 + L_2\cos(\theta_2)) - \sin(\theta_1 + \theta_2)L_2 & -\sin(\theta_1 + \theta_2)L_2 & 0 \\ \cos(\theta_1)(L_1 + L_2\cos(\theta_2)) + \cos(\theta_1 + \theta_2)L_2 & \cos(\theta_1 + \theta_2)L_2 & 0 \\ 0 & 0 & 0 \end{bmatrix} $$
 
 
-	$$det(J) = L_1L_2sin(θ_2)$$
+$$det(J) = L_1L_2sin(θ_2)$$
 
 
 - Meaning $sin(θ_2)$ can’t be equal 0
@@ -243,14 +239,14 @@ Inputs:
 $qf$ : Target position (from I.K.)
 $q0$ : Current position feedback
 $dt$ : Sampling time
-$v_max$ : Maximum velocity
-$a_max$ : Maximum acceleration
-$j_max$  : Maximum jerk
+$v_{\text{max}}$ : Maximum velocity
+$a_{\text{max}}$ : Maximum acceleration
+$j_{\text{max}}$  : Maximum jerk
 threshold : Motion range threshold for switching between trajectory
 Outputs: 
 $q$   : Position
-$q_dot$  : Velocity
-$q_ddot$ : Acceleration
+$q_{\text{dot}}$  : Velocity
+$q_{\text{ddot}}$ : Acceleration
 
 
 **Find maximum acceleration**
@@ -259,14 +255,14 @@ $q_ddot$ : Acceleration
 For a uniform rod rotating about one end: 
 $$I = \frac{1}{3} m L^2$$ 
  - Link Parameters: 
-   - Link 1: $(m_1 = 1 \, \text{kg}, L_1 = 5 \, \text{m})$ 
-   - Link 2: $(m_2 = 1 \, \text{kg}, L_2 = 4 \, \text{m})$
-   - Link 3: $(m_3 = 1 \, \text{kg}, L_3 = 1 \, \text{m})$ 
+   - Link 1: $m_1 = 1 \, \text{kg}, L_1 = 5 \, \text{m}$ 
+   - Link 2: $m_2 = 1 \, \text{kg}, L_2 = 4 \, \text{m}$
+   - Link 3: $m_3 = 1 \, \text{kg}, L_3 = 1 \, \text{m}$ 
 
 Total Moment of Inertia
 $$I_{\text{total}} = I_1 + I_2 + I_3$$ 
 
-Substitute $I_i = \frac{1}{3} m_i L_i^2
+Substitute $I_i = \frac{1}{3} m_i L_i^2$
 
  $$I_1 = \frac{1}{3}(1)(5^2) = \frac{25}{3} \, \text{kg ⋅ m}^2$$
  
@@ -296,15 +292,15 @@ $$\alpha = \frac{T}{I}$$
   4. Maximum Velocity
   The maximum velocity $(v_{\text{max}})$ depends on
    *  Link lengths: Longer links result in higher end-effector velocities for the same joint velocities. 
-   *  Practical constraints (e.g., motor limits, safety). 
+   *  Practical constraints (e.g. motor limits, safety.)
   
   Assume the robot moves through its maximum angular displacement $( \theta_{\text{max}} = 90^\circ = \frac{\pi}{2} \, \text{rad} )$ in 1 second:
   $$v_{\text{max}} = \omega_{\text{max}} \cdot L_{\text{eff}}$$ 
   With $\omega_{\text{max}} = \frac{\pi}{2} \, \text{rad/s}:$
   
   $$v_{\text{max}} = \frac{\pi}{2} \cdot 3.33 \approx 5.23 \, \text{m/s} ]$$ 
-    4. Final Recommendations
--  Maximum Acceleration: $a_{\text{max}} = 10 \, \text{m/s}^2 )$ (rounding for simplicity).  
+  5. Final Recommendations
+-  Maximum Acceleration: $a_{\text{max}} = 10 \, \text{m/s}^2$ (rounding for simplicity.)
  - Maximum Velocity: $v_{\text{max}} = 5 \, \text{m/s}$.
  
  **Find Velocity**
@@ -369,6 +365,8 @@ $$\omega_{\text{max}} = 0.5 \, \text{rad/s}$$
 
 4. **Maximum End-Effector Velocity**:
 $$v_{\text{linear}} = \omega_{\text{max}} \cdot L = 0.5 \cdot 5 = 2.5 \, \text{m/s}$$
+
+![Raw_Traject_input_output](https://github.com/user-attachments/assets/b94a4482-791d-45aa-a542-1c237614440a)
 
  ---
 #### **Robot Modeling**
