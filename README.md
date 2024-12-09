@@ -198,7 +198,15 @@ $$\theta_3 = \phi - (\theta_1 + \theta_2)$$
 Singularities
 - $sin(θ_2)$ can’t be equal 0
 - $r > L_1 + L_2, r < |L_1 - L_2|$
+
+
 ---
+### **Robot Modeling**
+
+
+---
+
+
 
 #### **Trajectory Planning**
 This trajectory part take input from inverse kinematic to use as reference position and calculate trajectory output
@@ -334,13 +342,13 @@ This is well within the range of human-like motion.
 
 ---
 
-#### **Updated README Calculations**
+#### **Trajectory Summary (calculation)**
 
 1. Moment of Inertia
-$$I_{\text{total}} = 14 \, \text{kg} \cdot \text{m}^2$$
+$$I_{\text{total}} = >20 \, \text{kg} \cdot \text{m}^2$$
 
 2. **Maximum Angular Acceleration**:
-$$\alpha_{\text{max}} = 3 \, \text{rad/s}^2$$
+$$\alpha_{\text{max}} = 3-5 \, \text{rad/s}^2$$
 
 3. **Maximum Angular Velocity**:
 $$\omega_{\text{max}} = 0.5 \, \text{rad/s}$$
@@ -349,9 +357,9 @@ $$\omega_{\text{max}} = 0.5 \, \text{rad/s}$$
 $$v_{\text{linear}} = \omega_{\text{max}} \cdot L = 0.5 \cdot 5 = 2.5 \, \text{m/s}$$
 
 ![Raw_Traject_input_output](https://github.com/user-attachments/assets/b94a4482-791d-45aa-a542-1c237614440a)
+---
+#### **Performance Test and Validation**
 
- ---
-### **Robot Modeling**
 
 ---
 ### **Forward Kinematics**
@@ -366,6 +374,7 @@ When there is a movement of the human arm with specified coordinates (x, y), the
 - Simulink
 ![simulink](https://github.com/user-attachments/assets/190d1676-65c6-413d-96e0-af15996aae74)
 
+### 
 ---
 
 
