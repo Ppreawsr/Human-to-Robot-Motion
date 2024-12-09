@@ -93,6 +93,7 @@ The newly created model map is now of the same scale as model robot, with human 
 ---
 ### Calculation
 ![3R planar](https://github.com/user-attachments/assets/de0d3961-aefc-4d3b-b7aa-7cc0295f7bd9)
+
 Variable Mapping and Meanings
 -  The end-effector position. $$x,y = (xₑ,yₑ)$$ 
 -   The orientation angle of the end-effector.
@@ -104,7 +105,35 @@ $$phi = γ$$
 -  Coordinates of the wrist point : $xw,  yw= (x₃,y₃)$
 -   First joint angle : `theta1` = $θ₁$ 
 -   Second joint angle : `theta2` = $θ₂$
--   Third joint angle (orientation) : `theta3`= $θ₃$  
+-   Third joint angle (orientation) : `theta3`= $θ₃$
+
+
+Singularity is also calculated and excluded to prevent error in this calculation as there are 2 main conditions
+
+Condition 1 : det(J) = 0
+- For a 3-DOF planar robot with link lengths L1, L2, L3​ and joint angles θ1, θ2, θ3 
+the Jacobian matrix is:
+J = 
+$$
+J = 
+\begin{bmatrix} 
+-\sin(\theta_1)(L_1 + L_2\cos(\theta_2)) - \sin(\theta_1 + \theta_2)L_2 & -\sin(\theta_1 + \theta_2)L_2 & 0 \\ 
+\cos(\theta_1)(L_1 + L_2\cos(\theta_2)) + \cos(\theta_1 + \theta_2)L_2 & \cos(\theta_1 + \theta_2)L_2 & 0 \\ 
+0 & 0 & 1
+\end{bmatrix}
+$$
+
+$$
+\det(J) = L_1 L_2 \sin(\theta_2)
+$$
+
+
+
+- Meaning sin(θ2) can’t be equal 0
+
+Condition 2 : Target out of reach
+- This is simply calculated with total length of L1, L2 to see if wrist position stay within workspace
+
 ---
 #### **Inverse Kinematics**
 ![2R_Planar_Manipulator](https://github.com/user-attachments/assets/ff68d60f-503d-445b-8ece-638ceb9dd275)
@@ -174,7 +203,7 @@ When there is a movement of the human arm with specified coordinates (x, y), the
 ![simulink](https://github.com/user-attachments/assets/190d1676-65c6-413d-96e0-af15996aae74)
 
 ---
-#### **Trajectory Planning**
+
 #### **Trajectory Planning**
 **Find maximum acceleration**
 1. Calculate the Moments of Inertia
@@ -182,10 +211,10 @@ When there is a movement of the human arm with specified coordinates (x, y), the
 For a uniform rod rotating about one end: 
 $$ I = \frac{1}{3} m L^2 $$ 
  - Link Parameters: 
- - Link 1: $(m_1 = 1 \, \text{kg}, L_1 = 5 \, \text{m})$ 
- - Link 2: $(m_2 = 1 \, \text{kg}, L_2 = 4 \, \text{m})$
- - Link 3: $(m_3 = 1 \, \text{kg}, L_3 = 1 \, \text{m})$ 
- - Total Moment of Inertia
+   - Link 1: $(m_1 = 1 \, \text{kg}, L_1 = 5 \, \text{m})$ 
+   - Link 2: $(m_2 = 1 \, \text{kg}, L_2 = 4 \, \text{m})$
+   - Link 3: $(m_3 = 1 \, \text{kg}, L_3 = 1 \, \text{m})$ 
+   Total Moment of Inertia
 $$ I_{\text{total}} = I_1 + I_2 + I_3 $$ 
 Substitute $I_i = \frac{1}{3} m_i L_i^2$
  $$ I_1 = \frac{1}{3}(1)(5^2) = \frac{25}{3} \, \text{kg ⋅ m}^2 $$ 
