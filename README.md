@@ -24,19 +24,32 @@ C. Visualization
 - Visualize the model as static images for display purposes.  
 - Real-time movement is not required for visualization.
 ### Requirement
-- **MediaPipe**
-  - Read the joint positions of only one arm.
-  - Receive input based on position without considering velocity or acceleration in the actual system.
-- **Inverse Kinematics**
-  - Transform the task space into $(q1, q2, q3)$.
-- **Trajectory Planning**
-  - Design the motion angle graph to be smooth.
-- **Inverse Dynamics**
-  - Calculate the Effort Torque from the weight of the link.
-- **Robot Modeling**
-  - Create a 3-DOF planar robotic arm model.
-- **Forward Kinematics**
-  - Transform the values from configuration space to task space.
+
+1. MediaPipe Integration:
+   - Extract joint positions of a single arm in real-time using MediaPipe.
+   - Use only positional data, ignoring velocity or acceleration in the input system.
+   - Map human arm motion to corresponding robotic arm joint configurations.
+
+2. Inverse Kinematics:
+   - Convert task-space coordinates (e.g., end-effector position) into joint space variables (q_1, q_2, q_3).
+   - Handle multiple solutions and singularities in joint space, ensuring stability.
+
+3. Trajectory Planning:
+   - Generate smooth and continuous motion trajectories for joint angles (q_1, q_2, q_3).
+   - Enforce physical constraints such as maximum velocity, acceleration, and jerk limits.
+
+4. Robot Modeling:
+   - Create a 3-DOF planar robotic arm model for simulation and control.
+   - Include realistic parameters such as link lengths, masses, and joint configurations.
+
+5. Forward Kinematics:
+   - Transform the robot’s joint space variables (q_1, q_2, q_3) back into task-space coordinates (x, y, phi).
+   - Compare task-space outputs with input data to calculate motion error.
+
+6. Inverse Dynamics:
+   - Calculate the required joint torques based on the arm's weight and dynamics.
+   - Focus on extracting torque values for analysis without implementing control efforts.
+
 ### Progress
 ![Project-Kinematics (1)](https://github.com/user-attachments/assets/5db76275-d54b-4531-bfa6-10c6d1f5ad99)
 ### Description
