@@ -108,31 +108,7 @@ $$phi = γ$$
 -   Third joint angle (orientation) : `theta3`= $θ₃$
 
 
-Singularity is also calculated and excluded to prevent error in this calculation as there are 2 main conditions
 
-Condition 1 : det(J) = 0
-- For a 3-DOF planar robot with link lengths L1, L2, L3​ and joint angles θ1, θ2, θ3 
-the Jacobian matrix is:
-J = 
-$$
-J = 
-\begin{bmatrix} 
--\sin(\theta_1)(L_1 + L_2\cos(\theta_2)) - \sin(\theta_1 + \theta_2)L_2 & -\sin(\theta_1 + \theta_2)L_2 & 0 \\ 
-\cos(\theta_1)(L_1 + L_2\cos(\theta_2)) + \cos(\theta_1 + \theta_2)L_2 & \cos(\theta_1 + \theta_2)L_2 & 0 \\ 
-0 & 0 & 1
-\end{bmatrix}
-$$
-
-$$
-\det(J) = L_1 L_2 \sin(\theta_2)
-$$
-
-
-
-- Meaning sin(θ2) can’t be equal 0
-
-Condition 2 : Target out of reach
-- This is simply calculated with total length of L1, L2 to see if wrist position stay within workspace
 
 ---
 #### **Inverse Kinematics**
@@ -155,7 +131,7 @@ $$r = \sqrt{x_w^2 + y_w^2}$$
 - Check Reachability
   Verify if the target position is reachable by checking the following conditions:
 If $r > L_1 + L_2$, the target is outside the reachable workspace.
- If $r < |L_1 - L_2|$, the target is too close and also unreachable.
+If $r < |L_1 - L_2|$, the target is too close and also unreachable.
 
 -  Calculate $\theta_2$
    Determine the second joint angle $\theta_2$ using the cosine rule for the triangle formed by the base, wrist point, and second joint.
@@ -180,15 +156,39 @@ $$\theta_1 = \alpha - \beta$$
 - Calculate $\theta_3$
 Finally, calculate the third joint angle $\theta_3$ as the orientation adjustment needed to align the end-effector with $(\phi)$.
 $$\theta_3 = \phi - (\theta_1 + \theta_2)$$
-- Handle Singularities
-Check for singularities to ensure valid calculations
-   - If $\sin(\theta_2) = 0$, the arm is fully extended or fully folded.
-Ensure all computed angles are within valid ranges.
+
+Singularity is also calculated and excluded to prevent error in this calculation as there are 2 main conditions
+
+Condition 1 : det(J) = 0
+- For a 3-DOF planar robot with link lengths L1, L2, L3​ and joint angles θ1, θ2, θ3 
+the Jacobian matrix is:
+
+	J = 
+	sin(θ1)(L_1 + L_2cos(θ2)) - sin(θ1 + θ2)L_2, 		-sin(θ1 + θ2)L_2, 		0 \\
+
+	cos(θ1)(L_1 + L_2cos(θ2)) + cos(θ1 + θ2)L_2, 		cos(θ1 + θ2)L_2, 		0 \\
+
+	0, 							0,				0
+
+
+	det(J) = L_1L_2sin(θ2)
+
+
+- Meaning sin(θ2) can’t be equal 0
+
+Condition 2 : Target out of reach
+- This is simply calculated with total length of L1, L2 to see if wrist position stay within workspace
+- The calculation is mentioned above
+
+
 - Summary
 $$\theta_1 = \alpha - \beta$$
 $$\theta_2 = \tan^{-1}\left(\frac{\sin(\theta_2)}{\cos(\theta_2)}\right)$$
 $$\theta_3 = \phi - (\theta_1 + \theta_2)$$
 
+Singularities
+- sin(θ2) can’t be equal 0
+- r > L_1 + L_2, r < |L_1 - L_2|
 ---
 
 #### **Trajectory Planning**
