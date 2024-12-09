@@ -3,12 +3,11 @@ This project focuses on simulating a robotic arm's movement based on human arm m
 ## Overview
 ### Transformation of Human Movement to Robot Motion Demo
 ### Description
-- **Mediapipe**
+- **Motion Capture**
 - **Inverse Kinematics**
-- **Forward Kinematics**
 - **Trajectory Planning**
 - **Robot Modeling**
-- **Dynamic**
+- **Forward Kinematics**
 ## Table of Contents
 
 - [Overview](#overview)
