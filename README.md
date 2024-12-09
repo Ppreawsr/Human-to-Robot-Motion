@@ -25,7 +25,6 @@ This project focuses on simulating a robotic arm's movement based on human arm m
 	   * [ Inverse Dynamics](#inversedynamics)
 	   *  [Robot Modeling](#robotmodeling)
 	   * [Forward Kinematics](#forwardkinematics)
-	   * [Differential Kinematics](#differentialkinematics)
    * [ 3D Visualization](#3dvisualization)
    * [ System Architecture Diagram](#systemarchitecturediagram)
 - [User Guide](#userguide)
