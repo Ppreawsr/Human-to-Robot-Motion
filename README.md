@@ -43,7 +43,7 @@ C. Visualization
    * [Image Capture](#imagecapture)
    * [Calculation](#calculation)
 	   * [Motion Capture](#motioncapture)
-           * [Inverse Kinematics](#inversekinematics)
+	   * [Inverse Kinematics](#inversekinematics)
 	   * [Trajectory Planning](#trajectoryplanning)
 	   * [Motion Control](#motioncontrol)
 	   * [Inverse Dynamics](#inversedynamics)
