@@ -190,19 +190,6 @@ $$\theta_2 = \tan^{-1}\left(\frac{\sin(\theta_2)}{\cos(\theta_2)}\right)$$
 $$\theta_3 = \phi - (\theta_1 + \theta_2)$$
 
 ---
-#### **Forward Kinematics**
-	
-When there is a movement of the human arm with specified coordinates (x, y), the model calculates the Inverse Kinematics using the (x, y) coordinates of the human arm. The result is q1, q2, q3. The model uses the q values of the human arm to control the movement of a 3DOF robotic arm. The 3DOF robotic arm then sends its q1, q2, q3 values back to be calculated in Forward Kinematics to verify whether the movement patterns of the human arm and the robotic arm match. The Forward Kinematics calculation produces (x, y) coordinates of the robotic arm, which are then compared with the (x, y) coordinates of the human arm movement. If the coordinates match, it indicates that the movement is correct.
-- Calculate the Forward Kinematics to obtain the (x, y) coordinates of the robotic arm
-![Forward](https://github.com/user-attachments/assets/e4b13c52-8cec-4dba-a7fd-121b637b7c27)
-
-- Matlab 
-
-![matlab](https://github.com/user-attachments/assets/6960d93f-59c5-41af-97f4-38ae74550ef0)
-- Simulink
-![simulink](https://github.com/user-attachments/assets/190d1676-65c6-413d-96e0-af15996aae74)
-
----
 
 #### **Trajectory Planning**
 **Find maximum acceleration**
@@ -311,14 +298,24 @@ $$v_{\text{linear}} = \omega_{\text{max}} \cdot L = 0.5 \cdot 5 = 2.5 \, \text{m
 #### **Robot Modeling**
 
 ---
+#### **Forward Kinematics**
+	
+When there is a movement of the human arm with specified coordinates (x, y), the model calculates the Inverse Kinematics using the (x, y) coordinates of the human arm. The result is q1, q2, q3. The model uses the q values of the human arm to control the movement of a 3DOF robotic arm. The 3DOF robotic arm then sends its q1, q2, q3 values back to be calculated in Forward Kinematics to verify whether the movement patterns of the human arm and the robotic arm match. The Forward Kinematics calculation produces (x, y) coordinates of the robotic arm, which are then compared with the (x, y) coordinates of the human arm movement. If the coordinates match, it indicates that the movement is correct.
+- Calculate the Forward Kinematics to obtain the (x, y) coordinates of the robotic arm
+![Forward](https://github.com/user-attachments/assets/e4b13c52-8cec-4dba-a7fd-121b637b7c27)
 
-#### **Dynamic**
+- Matlab 
 
-----
-### 3D Visualization
+![matlab](https://github.com/user-attachments/assets/6960d93f-59c5-41af-97f4-38ae74550ef0)
+- Simulink
+![simulink](https://github.com/user-attachments/assets/190d1676-65c6-413d-96e0-af15996aae74)
 
 ---
 
+
+#### **Dynamic Integration Attempt**
+
+----
 
 ## User Guide
 
