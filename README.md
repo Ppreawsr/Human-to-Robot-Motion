@@ -20,9 +20,9 @@ This project focuses on simulating a robotic arm's movement based on human arm m
    * [Image Capture](#imagecapture)
    * [Calculation](#calculation)
 	   * [Motion Capture](#motioncapture)
-     	   * [Inverse Kinematics](#inversekinematics)
+           * [Inverse Kinematics](#inversekinematics)
 	   * [Trajectory Planning](#trajectoryplanning)
-	   * [Motion Controll](#motioncontrol)
+	   * [Motion Control](#motioncontrol)
 	   * [Inverse Dynamics](#inversedynamics)
 	   * [Robot Modeling](#robotmodeling)
 	   * [Forward Kinematics](#forwardkinematics)
@@ -120,7 +120,7 @@ $$\theta_3 = \phi - (\theta_1 + \theta_2)$$
 
 ---
 #### **Forward Kinematics**
-
+   
 ---
 #### **Trajectory Planning**
 Find maximum acceleration
