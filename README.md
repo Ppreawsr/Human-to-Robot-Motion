@@ -1,8 +1,12 @@
 # Transformation of Human Movement to Robot Motion
 This project focuses on simulating a robotic arm's movement based on human arm motion tracked by a camera. MediaPipe detects motion and sends joint data to a MATLAB/SIMULINK model. Inverse Kinematics calculates joint angles, verified by Forward Kinematics. Trajectory planning and velocity control improve movement efficiency, with results showing joint positions, angles, and velocities, along with a visual movement display.
+
+**This project is a part of FRA333 Kinematics of Robotics System, Institute of Field Robotics, King Mongkut’s University of Technology Thonburi**
 ## Overview
 ### Transformation of Human Movement to Robot Motion Demo
 // demo picture 
+### Diagram
+// diagram picture
 ### Description
 - **Motion Capture**
 - **Inverse Kinematics**
@@ -123,6 +127,12 @@ $$\theta_3 = \phi - (\theta_1 + \theta_2)$$
 #### **Forward Kinematics**
 	
 When there is a movement of the human arm with specified coordinates (x, y), the model calculates the Inverse Kinematics using the (x, y) coordinates of the human arm. The result is q1, q2, q3. The model uses the q values of the human arm to control the movement of a 3DOF robotic arm. The 3DOF robotic arm then sends its q1, q2, q3 values back to be calculated in Forward Kinematics to verify whether the movement patterns of the human arm and the robotic arm match. The Forward Kinematics calculation produces (x, y) coordinates of the robotic arm, which are then compared with the (x, y) coordinates of the human arm movement. If the coordinates match, it indicates that the movement is correct.
+
+- Matlab 
+
+![matlab](https://github.com/user-attachments/assets/6960d93f-59c5-41af-97f4-38ae74550ef0)
+- Simulink
+![simulink](https://github.com/user-attachments/assets/190d1676-65c6-413d-96e0-af15996aae74)
 
 ---
 #### **Trajectory Planning**
