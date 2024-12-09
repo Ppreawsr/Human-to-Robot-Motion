@@ -164,10 +164,10 @@ Input :
 - End-effector position $(x,y)$
 - End-effector orientation $(phi)$
 - Elbow position $(x,y)$ : determining pose for multiple solution cases.
-- Link Length $(L1, L2, L3)$ : length of all 3 link of the model robot (5, 4 and 1 meters)
+- Link Length $(L_1, L_2, L_3)$ : length of all 3 link of the model robot (5, 4 and 1 meters)
 
 Output :
-- Orientation : $q1, q2, q3$
+- Orientation : $q_1, q_2, q_3$
 
 
 **Singularity** is also calculated and excluded to prevent error in this calculation as there are 2 main conditions
