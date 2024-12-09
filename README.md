@@ -37,7 +37,7 @@ C. Visualization
 - **Forward Kinematics**
   - Transform the values from configuration space to task space.
 ### Progress
-![Project-Kinematics (1)](https://github.com/user-attachments/assets/c8d20f82-4f29-49d3-a524-7728e02a452b)
+![Project-Kinematics (1)](https://github.com/user-attachments/assets/a91c37c2-7a1f-4016-b64d-22d5f806432f)
 ### Description
 - **Inverse Kinematics**
   - Used to transform MediaPipe input into configuration space for robotic systems, enabling accurate mapping of human motion to robotic actuators.
@@ -173,7 +173,22 @@ $$\theta_1 = \alpha - \beta$$
 Finally, calculate the third joint angle $\theta_3$ as the orientation adjustment needed to align the end-effector with $(\phi)$.
 $$\theta_3 = \phi - (\theta_1 + \theta_2)$$
 
+- Matlab Part
+	Calculated inverse kinematic equation is applied to matlab function block 
+
+![image](https://github.com/user-attachments/assets/2b8dec14-b8ba-4902-8353-2519da8ea5a2)
+
+Input :
+- End-effector position $(x,y)$
+- End-effector orientation $(phi)$
+- Elbow position $(x,y)$ : determining pose for multiple solution cases.
+- Link Length $(L1, L2, L3)$ : length of all 3 link of the model robot (5, 4 and 1 meters)
+Output :
+- Orientation : $q1, q2, q3$
+
+
 Singularity is also calculated and excluded to prevent error in this calculation as there are 2 main conditions
+
 
 Condition 1 : det(J) = 0
 - For a 3-DOF planar robot with link lengths L1, L2, L3​ and joint angles θ1, θ2, θ3 
@@ -208,33 +223,72 @@ Singularities
 ---
 
 #### **Trajectory Planning**
+This trajectory part take input from inverse kinematic to use as reference position and calculate trajectory output
+
+- Goal :
+  - Use Trajectory to reduce sudden change in motion
+  - Dynamically updating reference position in real time when input signal change
+- Trajectory used :
+  - Adjusted Trapezoidal Trajectory (large motion range)
+  - Cubic Trajectory (small motion range, noisy input)
+- Method :
+  - We adjusted Trapezoidal Trajectory which require constant start and finish time to suit constantly changing input by calculating accelerate and steady duration with distant to target
+  - While this method is similar to PID it is designed to help with reducing sudden change in velocity, acceleration from using PID alone as well as allowing limitation for velocity, acceleration and jerk
+  - Cubic trajectory is integrated for small motion range and noisy input
+
+![image](https://github.com/user-attachments/assets/0dace636-bdb0-4613-9e3a-958a53d345ca)
+
+Note : Max values are based on calculation part and slight adjustment for each joints to match human motion and ensure smoothness
+Inputs: 
+$qf$ : Target position (from I.K.)
+$q0$ : Current position feedback
+$dt$ : Sampling time
+$v_max$ : Maximum velocity
+$a_max$ : Maximum acceleration
+$j_max$  : Maximum jerk
+threshold : Motion range threshold for switching between trajectory
+Outputs: 
+$q$   : Position
+$q_dot$  : Velocity
+$q_ddot$ : Acceleration
+
+
 **Find maximum acceleration**
 1. Calculate the Moments of Inertia
          Each link contributes to the total moment of inertia $(I)$ of the system, which is a key factor in determining the maximum torque and, consequently, the acceleration. 
 For a uniform rod rotating about one end: 
-$$ I = \frac{1}{3} m L^2 $$ 
+$$I = \frac{1}{3} m L^2$$ 
  - Link Parameters: 
    - Link 1: $(m_1 = 1 \, \text{kg}, L_1 = 5 \, \text{m})$ 
    - Link 2: $(m_2 = 1 \, \text{kg}, L_2 = 4 \, \text{m})$
    - Link 3: $(m_3 = 1 \, \text{kg}, L_3 = 1 \, \text{m})$ 
-   Total Moment of Inertia
-$$ I_{\text{total}} = I_1 + I_2 + I_3 $$ 
-Substitute $I_i = \frac{1}{3} m_i L_i^2$
- $$ I_1 = \frac{1}{3}(1)(5^2) = \frac{25}{3} \, \text{kg ⋅ m}^2 $$ 
- $$I_2 = \frac{1}{3}(1)(4^2) = \frac{16}{3} \, \text{kg⋅m}^2 $$ 
- $$I_3 = \frac{1}{3}(1)(1^2) = \frac{1}{3} \, \text{kg⋅m}^2  $$
- $$ I_{\text{total}} = \frac{25}{3} + \frac{16}{3} + \frac{1}{3} = 14 \, \text{kg⋅m}^2 $$
+
+Total Moment of Inertia
+$$I_{\text{total}} = I_1 + I_2 + I_3$$ 
+
+Substitute $I_i = \frac{1}{3} m_i L_i^2
+
+ $$I_1 = \frac{1}{3}(1)(5^2) = \frac{25}{3} \, \text{kg ⋅ m}^2$$
+ 
+ $$I_2 = \frac{1}{3}(1)(4^2) = \frac{16}{3} \, \text{kg⋅m}^2$$
+ 
+ $$I_3 = \frac{1}{3}(1)(1^2) = \frac{1}{3} \, \text{kg⋅m}^2$$
+ 
+ $$I_{\text{total}} = \frac{25}{3} + \frac{16}{3} + \frac{1}{3} = 14 \, \text{kg⋅m}^2$$
+ 
 2. Maximum Torque
 Assume the motors can apply a total torque $T_{\text{max}}$ on the system. If the motors can apply $T_{\text{max}} = 50 \, \text{Nm}$, we can estimate $(a_{\text{max}})$. 
 Using the rotational analog of Newton's second law 
-$$ \alpha = \frac{T}{I}$$
- $$ a_{\text{max}} = \alpha \cdot L_{\text{eff}} $$
-  Where $(L_{\text{eff}})$ is the effective length of the links (weighted average of lengths)
-  $$ L_{\text{eff}} = \frac{\sum m_i L_i}{\sum m_i} = \frac{1 \cdot 5 + 1 \cdot 4 + 1 \cdot 1}{3} = 3.33 \, \text{m} $$ 
+$$\alpha = \frac{T}{I}$$
+ $$a_{\text{max}} = \alpha \cdot L_{\text{eff}$$
+
+  Where $L_{\text{eff}}$ is the effective length of the links (weighted average of lengths)
+  $$L_{\text{eff}} = \frac{\sum m_i L_i}{\sum m_i} = \frac{1 \cdot 5 + 1 \cdot 4 + 1 \cdot 1}{3} = 3.33 \, \text{m}$$ 
   Substitute values: 
-  $$\alpha = \frac{50}{14} \approx 3.57 \, \text{rad/s}^2 $$ 
-  $$a_{\text{max}} = \alpha \cdot L_{\text{eff}} \approx 3.57 \cdot 3.33 \approx 11.9 \, \text{m/s}^2 $$ 
-  3. Maximum Velocity
+  $$\alpha = \frac{50}{14} \approx 3.57 \, \text{rad/s}^2$$ 
+  $$a_{\text{max}} = \alpha \cdot L_{\text{eff}}$$ 
+  $$\approx 3.57 \cdot 3.33 \approx 11.9 \, \text{m/s}^2$$ 
+  4. Maximum Velocity
   The maximum velocity $(v_{\text{max}})$ depends on
    *  Link lengths: Longer links result in higher end-effector velocities for the same joint velocities. 
    *  Practical constraints (e.g., motor limits, safety). 
