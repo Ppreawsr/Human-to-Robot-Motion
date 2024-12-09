@@ -2,6 +2,7 @@
 This project focuses on simulating a robotic arm's movement based on human arm motion tracked by a camera. MediaPipe detects motion and sends joint data to a MATLAB/SIMULINK model. Inverse Kinematics calculates joint angles, verified by Forward Kinematics. Trajectory planning and velocity control improve movement efficiency, with results showing joint positions, angles, and velocities, along with a visual movement display.
 ## Overview
 ### Transformation of Human Movement to Robot Motion Demo
+// demo picture 
 ### Description
 - **Motion Capture**
 - **Inverse Kinematics**
@@ -56,10 +57,10 @@ Variable Mapping and Meanings
 -   The orientation angle of the end-effector.
 $$phi = γ$$ 
 -   $L1, L2, L3 :$
-Length of the first link. $$ L1 = L₁₂ $$ ​
-Length of the second link.  $$L2 = L₂₃ $$
-Length of the third link (to the end-effector) $$ L3 = L₃₄  $$
--  Coordinates of the wrist point. $$ xw,  yw= (x₃,y₃) $$
+    * Length of the first link : $L1 = L₁₂$ ​
+    * Length of the second link : $L2 = L₂₃$
+    * Length of the third link (to the end-effector) : $L3 = L₃₄$
+-  Coordinates of the wrist point : $xw,  yw= (x₃,y₃)$
 -   First joint angle : `theta1` = $θ₁$ 
 -   Second joint angle : `theta2` = $θ₂$
 -   Third joint angle (orientation) : `theta3`= $θ₃$  
