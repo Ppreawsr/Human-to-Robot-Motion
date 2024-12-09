@@ -6,7 +6,6 @@ This project focuses on simulating a robotic arm's movement based on human arm m
 - **Mediapipe**
 - **Inverse Kinematics**
 - **Forward Kinematics**
-- **Differential Kinematics**
 - **Trajectory Planning**
 - **Robot Modeling**
 - **Dynamic**
@@ -117,9 +116,6 @@ $$\theta_3 = \phi - (\theta_1 + \theta_2)$$
 
 ---
 #### **Forward Kinematics**
-
----
-####  **Differential Kinematics**
 
 ---
 #### **Trajectory Planning**
