@@ -51,7 +51,7 @@ C. Visualization
    - Focus on extracting torque values for analysis without implementing control efforts.
 
 ### Progress
-![Project-Kinematics (1)](https://github.com/user-attachments/assets/5db76275-d54b-4531-bfa6-10c6d1f5ad99)
+![Project-Kinematics (5)](https://github.com/user-attachments/assets/a9a86e5c-f1cd-41e3-aa6e-1093edf6c914)
 ### Description
 - **Inverse Kinematics**
   - Used to transform MediaPipe input into configuration space for robotic systems, enabling accurate mapping of human motion to robotic actuators.
