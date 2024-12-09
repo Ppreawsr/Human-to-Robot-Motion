@@ -5,7 +5,7 @@ This project focuses on simulating a robotic arm's movement based on human arm m
 ## Overview
 ### Transformation of Human Movement to Robot Motion Demo
 // demo picture 
-### Diagram
+### System Diagram / System Overview (Function and Argument)
 // diagram picture
 ### Objectives
 - To study the transformation of human arm movements into the simulated movement of a robotic arm model.
