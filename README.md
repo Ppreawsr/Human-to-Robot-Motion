@@ -358,7 +358,7 @@ $$v_{\text{linear}} = \omega_{\text{max}} \cdot L = 0.5 \cdot 5 = 2.5 \, \text{m
 
 ![Raw_Traject_input_output](https://github.com/user-attachments/assets/b94a4482-791d-45aa-a542-1c237614440a)
 ---
-#### **Performance Test and Validation**
+#### **Trajectory Performance Test**
 
 
 ---
