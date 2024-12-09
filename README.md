@@ -65,6 +65,8 @@ Length of the third link (to the end-effector) $$ L3 = L₃₄  $$
 -   Third joint angle (orientation) : `theta3`= $θ₃$  
 ---
 #### **Inverse Kinematics**
+![3R planar](https://github.com/user-attachments/assets/de0d3961-aefc-4d3b-b7aa-7cc0295f7bd9)
+
 Determine the joint angles $(\theta_1, \theta_2, \theta_3 )$ given the end-effector position $(x, y)$ and orientation $(\phi)$
 
 - Calculate the Wrist Position
