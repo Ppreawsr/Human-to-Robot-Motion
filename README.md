@@ -42,7 +42,7 @@ This project focuses on simulating a robotic arm's movement based on human arm m
 
 ---
 ##  Methodology
-### Image Capture (MediaPope)
+### Image Capture (MediaPipe)
 // code
 //description
 
