@@ -106,28 +106,10 @@ The newly created model map is now of the same scale as model robot, with human 
    The processed input is then sent to Matlab’s Simulink in real time using UDP every
 ![Project-Kinematics (3)](https://github.com/user-attachments/assets/35be6119-c24a-4762-a723-636cbeb84b7a)
 
----
-### Calculation
-![3R planar](https://github.com/user-attachments/assets/de0d3961-aefc-4d3b-b7aa-7cc0295f7bd9)
-
-Variable Mapping and Meanings
--  The end-effector position. $$x,y = (xₑ,yₑ)$$ 
--   The orientation angle of the end-effector.
-$$phi = γ$$ 
--   $L1, L2, L3 :$
-    * Length of the first link : $L1 = L₁₂$ ​
-    * Length of the second link : $L2 = L₂₃$
-    * Length of the third link (to the end-effector) : $L3 = L₃₄$
--  Coordinates of the wrist point : $xw,  yw= (x₃,y₃)$
--   First joint angle : `theta1` = $θ₁$ 
--   Second joint angle : `theta2` = $θ₂$
--   Third joint angle (orientation) : `theta3`= $θ₃$
-
-
 
 
 ---
-#### **Inverse Kinematics**
+### **Inverse Kinematics**
 ![2R_Planar_Manipulator](https://github.com/user-attachments/assets/ff68d60f-503d-445b-8ece-638ceb9dd275)
 
 Determine the joint angles $(\theta_1, \theta_2, \theta_3 )$ given the end-effector position $(x, y)$ and orientation $(\phi)$
@@ -319,7 +301,7 @@ $$\alpha = \frac{T}{I}$$
 
 ---
 
-#### **Adjusting Robot’s End-Effector Speed**
+### **Adjusting Robot’s End-Effector Speed**
 To make the robot’s speed more human-like, we can scale down the maximum angular velocity (\( \omega_{\text{max}} \)) or adjust the link lengths.
 
 1. Adjust Angular Velocity $\omega_{\text{max}}$
@@ -369,10 +351,10 @@ $$v_{\text{linear}} = \omega_{\text{max}} \cdot L = 0.5 \cdot 5 = 2.5 \, \text{m
 ![Raw_Traject_input_output](https://github.com/user-attachments/assets/b94a4482-791d-45aa-a542-1c237614440a)
 
  ---
-#### **Robot Modeling**
+### **Robot Modeling**
 
 ---
-#### **Forward Kinematics**
+### **Forward Kinematics**
 	
 When there is a movement of the human arm with specified coordinates (x, y), the model calculates the Inverse Kinematics using the (x, y) coordinates of the human arm. The result is q1, q2, q3. The model uses the q values of the human arm to control the movement of a 3DOF robotic arm. The 3DOF robotic arm then sends its q1, q2, q3 values back to be calculated in Forward Kinematics to verify whether the movement patterns of the human arm and the robotic arm match. The Forward Kinematics calculation produces (x, y) coordinates of the robotic arm, which are then compared with the (x, y) coordinates of the human arm movement. If the coordinates match, it indicates that the movement is correct.
 - Calculate the Forward Kinematics to obtain the (x, y) coordinates of the robotic arm
@@ -387,7 +369,7 @@ When there is a movement of the human arm with specified coordinates (x, y), the
 ---
 
 
-#### **Dynamic Integration Attempt**
+### **Dynamic Integration Attempt**
 
 ----
 
