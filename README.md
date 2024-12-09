@@ -6,6 +6,7 @@ This project focuses on simulating a robotic arm's movement based on human arm m
 - **Motion Capture**
 - **Inverse Kinematics**
 - **Trajectory Planning**
+- **Motion Control**
 - **Robot Modeling**
 - **Forward Kinematics**
 ## Table of Contents
@@ -17,11 +18,12 @@ This project focuses on simulating a robotic arm's movement based on human arm m
 - [Methodology](#methodology)
    * [Image Capture](#imagecapture)
    * [Calculation](#calculation)
-	   * [Inverse Kinematics](#inversekinematics)
+	   * [Motion Capture](#motioncapture)
+           * [Inverse Kinematics](#inversekinematics)
 	   * [Trajectory Planning](#trajectoryplanning)
-	   * [Cascade Control](#cascadecontrol)
-	   * [ Inverse Dynamics](#inversedynamics)
-	   *  [Robot Modeling](#robotmodeling)
+	   * [Motion Controll](#motioncontrol)
+	   * [Inverse Dynamics](#inversedynamics)
+	   * [Robot Modeling](#robotmodeling)
 	   * [Forward Kinematics](#forwardkinematics)
    * [ 3D Visualization](#3dvisualization)
    * [ System Architecture Diagram](#systemarchitecturediagram)
