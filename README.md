@@ -9,6 +9,7 @@ This project focuses on simulating a robotic arm's movement based on human arm m
 - **Motion Control**
 - **Robot Modeling**
 - **Forward Kinematics**
+- **Dynamic***
 ## Table of Contents
 
 - [Overview](#overview)
