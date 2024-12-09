@@ -21,7 +21,24 @@ B. Number of Joints in the Robotic Arm Model
 
 C. Visualization  
 - Visualize the model as static images for display purposes.  
-- Real-time movement is not required for visualization.  
+- Real-time movement is not required for visualization.
+### Requirement
+- **MediaPipe**
+  - Read the joint positions of only one arm.
+  - Receive input based on position without considering velocity or acceleration in the actual system.
+- **Inverse Kinematics**
+  - Transform the task space into (q1, q2, q3).
+- **Trajectory Planning**
+  - Design the motion angle graph to be smooth.
+- **Inverse Dynamics**
+  - Calculate the Effort Torque from the weight of the link.
+- **Robot Modeling**
+  - Create a 3-DOF planar robotic arm model.
+- **Forward Kinematics**
+  - Transform the values from configuration space to task space.
+### Progress
+![Project-Kinematics](https://github.com/user-attachments/assets/0ce16c16-ecb3-4ff1-a2cd-76d6262488c8)
+
 ### Description
 - **Inverse Kinematics**
   - Used to transform MediaPipe input into configuration space for robotic systems, enabling accurate mapping of human motion to robotic actuators.
@@ -31,7 +48,7 @@ C. Visualization
   - Used to create simulation models for testing purposes, enabling iterative improvements and robust system design.
 - **Forward Kinematics**
   - Applied to calculate the end-effector position and validate the model, especially since MediaPipe inputs with varying scales cannot be directly compared.
-- **Inverse Dynamic**
+- **Inverse Dynamics**
   - Calculates the torque and forces required for motion to adhere to trajectory planning, ensuring physical feasibility and system stability.
 ## Table of Contents
 
