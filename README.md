@@ -37,7 +37,7 @@ C. Visualization
 - **Forward Kinematics**
   - Transform the values from configuration space to task space.
 ### Progress
-![Project-Kinematics (1)](https://github.com/user-attachments/assets/a91c37c2-7a1f-4016-b64d-22d5f806432f)
+![Project-Kinematics (1)](https://github.com/user-attachments/assets/c8d20f82-4f29-49d3-a524-7728e02a452b)
 ### Description
 - **Inverse Kinematics**
   - Used to transform MediaPipe input into configuration space for robotic systems, enabling accurate mapping of human motion to robotic actuators.
