@@ -123,23 +123,24 @@ $$\theta_3 = \phi - (\theta_1 + \theta_2)$$
    
 ---
 #### **Trajectory Planning**
-Find maximum acceleration
-**1. Calculate the Moments of Inertia**
-Each link contributes to the total moment of inertia $(I)$ of the system, which is a key factor in determining the maximum torque and, consequently, the acceleration. 
+#### **Trajectory Planning**
+**Find maximum acceleration**
+1. Calculate the Moments of Inertia
+         Each link contributes to the total moment of inertia $(I)$ of the system, which is a key factor in determining the maximum torque and, consequently, the acceleration. 
 For a uniform rod rotating about one end: 
 $$ I = \frac{1}{3} m L^2 $$ 
-- Link Parameters: 
-  - Link 1: $(m_1 = 1 \, \text{kg}, L_1 = 5 \, \text{m})$ 
-  - Link 2: $(m_2 = 1 \, \text{kg}, L_2 = 4 \, \text{m})$
-  - Link 3: $(m_3 = 1 \, \text{kg}, L_3 = 1 \, \text{m})$ 
-- Total Moment of Inertia
+ - Link Parameters: 
+ - Link 1: $(m_1 = 1 \, \text{kg}, L_1 = 5 \, \text{m})$ 
+ - Link 2: $(m_2 = 1 \, \text{kg}, L_2 = 4 \, \text{m})$
+ - Link 3: $(m_3 = 1 \, \text{kg}, L_3 = 1 \, \text{m})$ 
+ - Total Moment of Inertia
 $$ I_{\text{total}} = I_1 + I_2 + I_3 $$ 
 Substitute $I_i = \frac{1}{3} m_i L_i^2$
  $$ I_1 = \frac{1}{3}(1)(5^2) = \frac{25}{3} \, \text{kg ⋅ m}^2 $$ 
  $$I_2 = \frac{1}{3}(1)(4^2) = \frac{16}{3} \, \text{kg⋅m}^2 $$ 
  $$I_3 = \frac{1}{3}(1)(1^2) = \frac{1}{3} \, \text{kg⋅m}^2  $$
  $$ I_{\text{total}} = \frac{25}{3} + \frac{16}{3} + \frac{1}{3} = 14 \, \text{kg⋅m}^2 $$
-**2. Maximum Torque** 
+2. Maximum Torque
 Assume the motors can apply a total torque $T_{\text{max}}$ on the system. If the motors can apply $T_{\text{max}} = 50 \, \text{Nm}$, we can estimate $(a_{\text{max}})$. 
 Using the rotational analog of Newton's second law 
 $$ \alpha = \frac{T}{I}$$
@@ -149,32 +150,32 @@ $$ \alpha = \frac{T}{I}$$
   Substitute values: 
   $$\alpha = \frac{50}{14} \approx 3.57 \, \text{rad/s}^2 $$ 
   $$a_{\text{max}} = \alpha \cdot L_{\text{eff}} \approx 3.57 \cdot 3.33 \approx 11.9 \, \text{m/s}^2 $$ 
-  **3. Maximum Velocity** 
+  3. Maximum Velocity
   The maximum velocity $(v_{\text{max}})$ depends on
-  1. Link lengths: Longer links result in higher end-effector velocities for the same joint velocities. 
-  2. Practical constraints (e.g., motor limits, safety). 
+   *  Link lengths: Longer links result in higher end-effector velocities for the same joint velocities. 
+   *  Practical constraints (e.g., motor limits, safety). 
   Assume the robot moves through its maximum angular displacement $( \theta_{\text{max}} = 90^\circ = \frac{\pi}{2} \, \text{rad} )$ in 1 second:
   $$v_{\text{max}} = \omega_{\text{max}} \cdot L_{\text{eff}}$$ 
   With $\omega_{\text{max}} = \frac{\pi}{2} \, \text{rad/s}:$
   
   $$v_{\text{max}} = \frac{\pi}{2} \cdot 3.33 \approx 5.23 \, \text{m/s} ]$$ 
-  **4. Final Recommendations** 
- Maximum Acceleration: $a_{\text{max}} = 10 \, \text{m/s}^2 )$ (rounding for simplicity).  
- Maximum Velocity: $v_{\text{max}} = 5 \, \text{m/s}$.
+    4. Final Recommendations
+-  Maximum Acceleration: $a_{\text{max}} = 10 \, \text{m/s}^2 )$ (rounding for simplicity).  
+ - Maximum Velocity: $v_{\text{max}} = 5 \, \text{m/s}$.
  
- Find Velocity
-    **1. Average Linear Velocity**
+ **Find Velocity**
+ 1. Average Linear Velocity
           The linear speed of a human hand (end effector) during daily activities typically ranges between:
-     - $1.5 \, \text{m/s}$ (e.g., reaching for an object).
-     - $5 \, \text{m/s}$ (e.g., rapid hand movements like throwing).
+ - $1.5 \, \text{m/s}$ (e.g. reaching for an object).
+ - $5 \, \text{m/s}$ (e.g. rapid hand movements like throwing).
 
-Reference:
-   - Fast human arm movements, such as a tennis serve, can reach up to 20 m/s, but this is an extreme case.
+> Reference:  Fast human arm movements, such as a tennis serve, can reach up to 20 m/s, but this is an extreme case.
 
-**2. Angular Velocity of Human Joints**:
-   - Shoulder Joint: $2 \, \text{rad/s}$ – $5 \, \text{rad/s}$
-  - Elbow Joint: $2 \, \text{rad/s}$ – $6 \, \text{rad/s}$
-   - Wrist Joint: $1 \, \text{rad/s} \)–\( 4 \, \text{rad/s}$.
+2. Angular Velocity of Human Joints
+- Shoulder Joint: $2 \, \text{rad/s}$ – $5 \, \text{rad/s}$
+- Elbow Joint: $2 \, \text{rad/s}$ – $6 \, \text{rad/s}$
+ - Wrist Joint: $1 \, \text{rad/s} - 4 \, \text{rad/s}$
+
 
 ---
 
@@ -193,14 +194,14 @@ $$\omega_{\text{max}} = \frac{2.5}{5} = 0.5 \, \text{rad/s}.$$
 
 2. Adjust Acceleration $\alpha_{\text{max}}$
 For human-like smoothness, angular acceleration values should be around:
-- Shoulder: $2 \, \text{rad/s}^2 \)–\( 4 \, \text{rad/s}^2$
-- Elbow/Wrist: $3 \, \text{rad/s}^2 \)–\( 6 \, \text{rad/s}^2$
+- Shoulder: $2 \, \text{rad/s}^2 - 4 \, \text{rad/s}^2$
+- Elbow/Wrist: $3 \, \text{rad/s}^2 - 6 \, \text{rad/s}^2$
 
-We can set $alpha_{\text{max}} = 3 \, \text{rad/s}^2$
+We can set $\alpha_{\text{max}} = 3 \, \text{rad/s}^2$
 
-3. Adjust Jerk (\( j_{\text{max}} \))
+3. Adjust Jerk $( j_{\text{max}} )$
 Human movements are typically jerk-limited to minimize discomfort or instability:
-- Set$j_{\text{max}} = 20 \, \text{rad/s}^3$
+- Set $j_{\text{max}} = 20 \, \text{rad/s}^3$
 
 
 #### **Revised Linear Velocity**
@@ -213,8 +214,8 @@ This is well within the range of human-like motion.
 
 #### **Updated README Calculations**
 
-1. **Moment of Inertia**:
-$$I_{\text{total}} = 14 \, \text{kg·m}^2$$
+1. Moment of Inertia
+$$I_{\text{total}} = 14 \, \text{kg} \cdot \text{m}^2$$
 
 2. **Maximum Angular Acceleration**:
 $$\alpha_{\text{max}} = 3 \, \text{rad/s}^2$$
