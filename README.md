@@ -67,9 +67,28 @@ C. Visualization
 
 ---
 ##  Methodology
-### Image Capture (MediaPipe)
-// code
-//description
+### Motion Capture (with MediaPipe)
+This process includes capturing 2D-coordinate from the human arm, preprocessing with moving average, calculating into unit vectors and adjusting scale to match the robotic arm model.
+1. Capturing arm position input (X, Y)
+
+   In this step, we use the “MediaPipe” library to capture input arm’s coordinate joint positions include :
+   - Reference frame (0,0) : Left shoulder
+   - Joints : Left shoulder, elbow and wrist
+   - End-effector :  Left hand
+![Project-Kinematics (2)](https://github.com/user-attachments/assets/e4dbe111-d1a9-42ed-9fb0-b3f8d88edf35)
+2. Processing
+
+   input is then preprocessed with with moving average for noise reduction
+![code-processing](https://github.com/user-attachments/assets/56a6c661-5855-413a-a399-e4dc2c27daa9)
+3. Model Mapping
+
+   Calculate unit vector and adjust input’s scale to Transform the abstract 2D model into a real-world robotic arm model
+![Project-Kinematics (4)](https://github.com/user-attachments/assets/36080f6b-964e-48d3-aacd-a40583a910e0)
+The newly created model map is now of the same scale as model robot, with human input’s unit vector (in reference to shoulder frame) 
+4. Real time communication with Simulink
+
+   The processed input is then sent to Matlab’s Simulink in real time using UDP every
+![Project-Kinematics (3)](https://github.com/user-attachments/assets/35be6119-c24a-4762-a723-636cbeb84b7a)
 
 ---
 ### Calculation
