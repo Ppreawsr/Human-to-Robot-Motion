@@ -23,13 +23,16 @@ C. Visualization
 - Visualize the model as static images for display purposes.  
 - Real-time movement is not required for visualization.  
 ### Description
-- **Motion Capture**
 - **Inverse Kinematics**
+  - Used to transform MediaPipe input into configuration space for robotic systems, enabling accurate mapping of human motion to robotic actuators.
 - **Trajectory Planning**
-- **Motion Control**
+  - Focused on controlling the movement of robotic systems to follow a predefined path, ensuring efficiency and accuracy.
 - **Robot Modeling**
+  - Used to create simulation models for testing purposes, enabling iterative improvements and robust system design.
 - **Forward Kinematics**
+  - Applied to calculate the end-effector position and validate the model, especially since MediaPipe inputs with varying scales cannot be directly compared.
 - **Inverse Dynamic**
+  - Calculates the torque and forces required for motion to adhere to trajectory planning, ensuring physical feasibility and system stability.
 ## Table of Contents
 
 - [Overview](#overview)
@@ -70,7 +73,7 @@ C. Visualization
 
 ---
 ### Calculation
-
+![3R planar](https://github.com/user-attachments/assets/de0d3961-aefc-4d3b-b7aa-7cc0295f7bd9)
 Variable Mapping and Meanings
 -  The end-effector position. $$x,y = (xₑ,yₑ)$$ 
 -   The orientation angle of the end-effector.
@@ -85,7 +88,7 @@ $$phi = γ$$
 -   Third joint angle (orientation) : `theta3`= $θ₃$  
 ---
 #### **Inverse Kinematics**
-![3R planar](https://github.com/user-attachments/assets/de0d3961-aefc-4d3b-b7aa-7cc0295f7bd9)
+![2R_Planar_Manipulator](https://github.com/user-attachments/assets/ff68d60f-503d-445b-8ece-638ceb9dd275)
 
 Determine the joint angles $(\theta_1, \theta_2, \theta_3 )$ given the end-effector position $(x, y)$ and orientation $(\phi)$
 
@@ -267,9 +270,7 @@ $$v_{\text{linear}} = \omega_{\text{max}} \cdot L = 0.5 \cdot 5 = 2.5 \, \text{m
 ### 3D Visualization
 
 ---
-### System Architecture Diagram
 
----
 
 ## User Guide
 
