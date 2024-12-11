@@ -436,7 +436,10 @@ When there is a movement of the human arm with specified coordinates (x, y), the
 - Simulink
 ![simulink](https://github.com/user-attachments/assets/190d1676-65c6-413d-96e0-af15996aae74)
 
-### 
+![Screenshot 2024-12-11 144355](https://github.com/user-attachments/assets/16996204-952b-4114-8bb9-365032dd62b7)
+
+
+It was found that incorporating the trajectory into the model resulted in a high error value during the initial phase, which gradually approached zero over time.
 ---
 
 
