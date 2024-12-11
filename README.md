@@ -601,7 +601,7 @@ After choose input to model press run the code then wait for a second until simu
 ## Conclusion
 
 This project "Transformation of Human Movement to Robot Motion" was an approach to converting human arm movements into robotic arm motions. Using MediaPipe for motion capture and processing joint data with robotic transformation 
-(Inverse Kinematics, Forward Kinematics, Dynamics, etc.) 
+(Inverse Kinematics, Forward Kinematics, Dynamics, etc.).
 
 However, there are still many flaws that affected its performance and completeness.
 
@@ -610,12 +610,13 @@ However, there are still many flaws that affected its performance and completene
 
 2. Successfully implement : integrating human motion data into robotic arm motion through calculations of joint angles (q1, q2, q3) and implemented noise reduction techniques plus trajectory to ensure smooth transitions.
 
-
-**Limitation to be improved** 
+3. Successful visualization of angular velocity and effort-torque after inverse dynamic calculation in form of a graph, although improvement still needed for model integrations.
+   
+**Issue and Suggestion for improvement** 
 1. Singularities in the Robotic Arm Model  
-   - Issue: Singularities in the model 
+   - Issue: Singularities in the model from elbow's revolute joint.
    - Reason: Limitations in model's setup.  
-   - Solution: Redesigning the model's joint orientations or different method for avoiding singularities.
+   - Solution: Redesigning/Optimization the model's joint orientations for avoiding singularities.
 
 2. Unsmooth Torque Graphs  
    - Issue: Torque graphs lacked smoothness during rapid movements, although they remained realistic and consistent with human motion.  
@@ -624,11 +625,12 @@ However, there are still many flaws that affected its performance and completene
 
 3. Model and DOF Limitations  
    - Issue: The robotic arm was limited to 3-DOF with basic joint definitions, unable to copy complex human movements.  
-   - Solution: Expanding the DOF and improve input from 2D to 3D
+   - Solution: Expanding the DOF and increase input dimension from 2D to 3D.
 
 4. Data Noise in Motion Capture  
-   - Issue: While using a moving average helped reduce noise, some inaccuracies in joint positioning persisted.  
-   - Solution: Employing more robust preprocessing techniques, such as machine learning models for noise filtering, could increase data reliability.
+   - Issue: While using a moving average helped reduce noise, there are still some fluctuating input of joint positioning.
+   - Reason: Shaking input of motion capture model.
+   - Solution: Replace current MediaPipe's library with more robust input model, could increase data reliability. 
 
 This project still has potential for improvement to reliable system for real-world applications. Further refinements would enhance its applicability and effectiveness in fields such as healthcare, manufacturing, and robotics research.
 
