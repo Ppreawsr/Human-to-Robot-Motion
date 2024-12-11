@@ -397,6 +397,29 @@ When there is a movement of the human arm with specified coordinates (x, y), the
 
 ## User Guide
 
+https://github.com/user-attachments/assets/2659b10a-2745-4335-bb0c-b3db2ac1d299
+
+
+- **Step1** : User must obtain a file of mediapipe code which can detect your body and movement. After the user obtains it, User must run this file first then wait until the two windows appear
+![Screenshot 2024-12-11 135747](https://github.com/user-attachments/assets/40069d0b-dbc2-491d-bc8c-1f98276d6f63)
+![Screenshot 2024-12-11 135843](https://github.com/user-attachments/assets/3370ce8a-f13e-42dd-83ad-d2e175462603)
+
+- **Step2** : Open MATLAB/SIMULINK, inside the file There are 4 parts:
+1. UDP and Input : This area is all about receive data from Vscode (MediaPipe)
+2. 3 Parts of input to Model. You can choose one out of 3 parts to run the model, the other you can comment out.
+	- Inverse Kinematic Only 
+	- Trajectory Only
+	- Inverse Dynamic Only
+
+![Screenshot 2024-12-11 135946](https://github.com/user-attachments/assets/4d993a45-0078-431a-9a6c-2e6fc0e55243)
+
+After choose input to model press run the code then wait for a second until simulink is done compiling and Time is start counting
+
+![Screenshot 2024-12-11 140022](https://github.com/user-attachments/assets/8a03c1b2-e602-4473-bd4d-bb4a9f2ba8cf)
+
+- **Step3** : Try waving in front of the camera with your left arm. You will see your arm being tracked and the model starts to move. Enjoy !
+
+![image](https://github.com/user-attachments/assets/06c922f2-5b0d-4b35-a7a8-8d592bda5418)
 
 
 ## Demo & Result
