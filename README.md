@@ -600,6 +600,39 @@ After choose input to model press run the code then wait for a second until simu
 
 ## Conclusion
 
+This project "Transformation of Human Movement to Robot Motion" was an approach to converting human arm movements into robotic arm motions. Using MediaPipe for motion capture and processing joint data with robotic transformation 
+(Inverse Kinematics, Forward Kinematics, Dynamics, etc.) 
+
+However, there are still many flaws that affected its performance and completeness.
+
+**Key Outcomes**
+1. Successfully implement : Real-time communication with Simulink via UDP allowed for efficient data processing, preventing future development issue.
+
+2. Successfully implement : integrating human motion data into robotic arm motion through calculations of joint angles (q1, q2, q3) and implemented noise reduction techniques plus trajectory to ensure smooth transitions.
+
+
+**Limitation to be improved** 
+1. Singularities in the Robotic Arm Model  
+   - Issue: Singularities in the model 
+   - Reason: Limitations in model's setup.  
+   - Solution: Redesigning the model's joint orientations or different method for avoiding singularities.
+
+2. Unsmooth Torque Graphs  
+   - Issue: Torque graphs lacked smoothness during rapid movements, although they remained realistic and consistent with human motion.  
+   - Reason: Imperfect modeling of dynamics or inadequate filtering techniques.  
+   - Solution: Applying advanced filtering methods, such as Kalman filters, and optimizing the dynamic equations for smoothness.
+
+3. Model and DOF Limitations  
+   - Issue: The robotic arm was limited to 3-DOF with basic joint definitions, unable to copy complex human movements.  
+   - Solution: Expanding the DOF and improve input from 2D to 3D
+
+4. Data Noise in Motion Capture  
+   - Issue: While using a moving average helped reduce noise, some inaccuracies in joint positioning persisted.  
+   - Solution: Employing more robust preprocessing techniques, such as machine learning models for noise filtering, could increase data reliability.
+
+This project still has potential for improvement to reliable system for real-world applications. Further refinements would enhance its applicability and effectiveness in fields such as healthcare, manufacturing, and robotics research.
+
+
 ---
 ## References
 [1] Aksoy, Egemen 1, Çakır, Arif Dorukan 2, Erol, Berat Alper 3, Gumus, Abdurrahman 4. Real Time Computer Vision Based Robotic Arm Controller with ROS and Gazebo Simulation Environment. https://doi.org/10.XXXX/elec.2023
