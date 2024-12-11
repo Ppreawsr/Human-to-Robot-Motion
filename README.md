@@ -133,12 +133,12 @@ This process includes capturing 2D-coordinate from the human arm, preprocessing 
          endf = (sum(ef_raw[0])/i_max, sum(ef_raw[1])/i_max, sum(ef_raw[2])/i_max)
 ```
 		
-4. Model Mapping
+3. Model Mapping
 
    Calculate unit vector and adjust input’s scale to Transform the abstract 2D model into a real-world robotic arm model
 ![Project-Kinematics (4)](https://github.com/user-attachments/assets/36080f6b-964e-48d3-aacd-a40583a910e0)
 The newly created model map is now of the same scale as model robot, with human input’s unit vector (in reference to shoulder frame) 
-5. Real time communication with Simulink
+4. Real time communication with Simulink
 
    The processed input is then sent to Matlab’s Simulink in real time using UDP every
 ![Project-Kinematics (3)](https://github.com/user-attachments/assets/35be6119-c24a-4762-a723-636cbeb84b7a)
