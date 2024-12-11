@@ -445,7 +445,7 @@ It was found that incorporating the trajectory into the model resulted in a high
 ---
 
 
-### **Dynamic Integration Attempt**
+### **Inverse Dynamics Integration**
 
 ----
 
