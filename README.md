@@ -649,3 +649,10 @@ This project still has potential for improvement to reliable system for real-wor
 [3] Juecoree. (2021). Forward and Reverse Kinematics for 3R Planar Manipulator. Retrieved from https://hive.blog/hive-196387/@juecoree/forward-and-reverse-kinematics-for-3r-planar-manipulator
 
 [4] Wang, Ziwei 1, Liang, Rongjian 2, Chen, Zhang 3, Liang, Bin 4. (2020). Fast and Intuitive Kinematics Mapping for Human-Robot Motion Imitating: A Virtual-Joint-Based Approach. IFAC PapersOnLine, 53(2), 10011–10018. https://doi.org/10.1016/j.ifacol.2020.12.2720
+
+---
+## Collabulator
+- Siriprapha Uppapark     65340500053
+- 65340500063
+- Chutinan Pipatanapiwong 65340500068
+- Sippanon Sornkunkaew    65340500076
