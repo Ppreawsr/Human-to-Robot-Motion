@@ -89,7 +89,7 @@ C. Visualization
 - **Trajectory Planning** 100%
   - All requirement are met. (controlling the movement of robotic systems to follow a predefined path, ensuring efficiency and accuracy.)
 - **Robot Modeling** 85%
-  - Partially met requirement (success in angular position input integration, lacking due to singularity issue when applying velocity or torque)
+  - Success in angular position input integration but lacking due to singularity issue when applying velocity or torque
 - **Forward Kinematics** 100%
   - All requirement are met. (Applied to calculate the end-effector position and validate the model, especially since MediaPipe inputs with varying scales cannot be directly compared.)
 - **Inverse Dynamics** 70%
