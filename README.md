@@ -80,7 +80,7 @@ C. Visualization
    - Focus on extracting torque values for analysis in form of a linegraph.
 
 ### Progress
-![Project-Kinematics (5)](https://github.com/user-attachments/assets/a9a86e5c-f1cd-41e3-aa6e-1093edf6c914)
+![Project-Kinematics (7)](https://github.com/user-attachments/assets/26350492-12d8-401b-9294-f792e8785107)
 ### Description
 - **Media Pipe** 100%
   - All requirement are met. (capture input, preprocess, real-time communicate) 
@@ -88,7 +88,7 @@ C. Visualization
   - All requirement are met. (transformed MediaPipe input into configuration space for robotic systems)
 - **Trajectory Planning** 100%
   - All requirement are met. (controlling the movement of robotic systems to follow a predefined path, ensuring efficiency and accuracy.)
-- **Robot Modeling** 85%
+- **Robot Modeling** 75%
   - Success in angular position input integration but lacking due to singularity issue when applying velocity or torque
 - **Forward Kinematics** 100%
   - All requirement are met. (Applied to calculate the end-effector position and validate the model, especially since MediaPipe inputs with varying scales cannot be directly compared.)
@@ -401,7 +401,7 @@ $$\alpha = \frac{T}{I}$$
 ---
 
 ### **Adjusting Robot’s End-Effector Speed**
-To make the robot’s speed more human-like, we can scale down the maximum angular velocity (\( \omega_{\text{max}} \)) or adjust the link lengths.
+To make the robot’s speed more human-like, we can scale down the maximum angular velocity $\omega_{max}$ or adjust the link lengths.
 
 1. Adjust Angular Velocity $\omega_{\text{max}}$
 We aim for the linear velocity of the end effector to fall between 1.5 m/s and 5 m/s.
