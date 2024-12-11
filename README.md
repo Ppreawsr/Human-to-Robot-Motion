@@ -475,11 +475,6 @@ After choose input to model press run the code then wait for a second until simu
 
 ![image](https://github.com/user-attachments/assets/06c922f2-5b0d-4b35-a7a8-8d592bda5418)
 
-
-## Demo & Result
-### Example
-### Validation
-
 ## Conclusion
 
 ---
