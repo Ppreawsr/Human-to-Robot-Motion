@@ -5,6 +5,7 @@ This project focuses on simulating a robotic arm's movement based on human arm m
 
 **This project is a part of FRA333 Kinematics of Robotics System, Institute of Field Robotics, King Mongkut’s University of Technology Thonburi**
 
+
 ## Table of Contents
 
 - [Overview](#overview)
@@ -16,16 +17,15 @@ This project focuses on simulating a robotic arm's movement based on human arm m
    * [Calculation](#calculation)
    * [Motion Capture](#motion-capture)
 	   * [Inverse Kinematics](#inverse-kinematics)
-	   * [Trajectory Planning](#trajectory-planning)
-	   * [Motion Control](#motion-control)
-	   * [Inverse Dynamics](#inverse-dynamics)
 	   * [Robot Modeling](#robot-modeling)
+	   * [Trajectory Planning](#trajectory-planning)
 	   * [Forward Kinematics](#forward-kinematics)
-   * [ 3D Visualization](#3d-visualization)
+	   * [Inverse Dynamics Integration](#inverse-dynamics-integration)
 - [User Guide](#user-guide)
 - [Conclusion](#conclusion)
 - [References](#references)
-- 
+
+  
 ## Overview
 ### Transformation of Human Movement to Robot Motion Demo
 
