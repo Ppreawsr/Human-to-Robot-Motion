@@ -37,24 +37,26 @@ https://github.com/user-attachments/assets/0d501b27-6180-4bc1-8208-0573c5746edb
 ### Objectives
 - To study the transformation of human arm movements into the simulated movement of a robotic arm model.
 - To explore the use of MediaPipe and MATLAB software.
+  
 ### Project Scope  
 A. Input from Human Arm Motion Capture  
 - MediaPipe reads the joint positions of only one arm.  
-- Input is based solely on position, without considering velocity or acceleration in the actual system.  
+- Input is based solely on position (X,Y), without considering velocity or acceleration in the actual system.  
 
 B. Number of Joints in the Robotic Arm Model  
 - The model consists of the shoulder, elbow, wrist, and the base of the middle finger only.  
-- The simulated model has no more than 3 degrees of freedom. (DOF)
+- The simulated model has no more than 3 degrees of freedom. (3 DOF)
 
 C. Visualization  
 - Visualize the model as static images for display purposes.  
-- Real-time movement is not required for visualization.
+- Model visualization in Real-time only applied with position control input (no velocity, acceleration or torque).
+- Effort-torque Focus on extracting torque values for analysis without implementing control efforts.
 ### Requirement
 
 1. MediaPipe Integration:
    - Extract joint positions of a single arm in real-time using MediaPipe.
-   - Use only positional data, ignoring velocity or acceleration in the input system.
-   - Map human arm motion to corresponding robotic arm joint configurations.
+   - Input position (X,Y) should be mapped from human arm motion to corresponding robotic arm joint configurations.
+   - Real-time communication with Simulink using UDP.
 
 2. Inverse Kinematics:
    - Convert task-space coordinates (e.g., end-effector position) into joint space variables (q_1, q_2, q_3).
@@ -67,6 +69,7 @@ C. Visualization
 4. Robot Modeling:
    - Create a 3-DOF planar robotic arm model for simulation and control.
    - Include realistic parameters such as link lengths, masses, and joint configurations.
+   - Take input as reference angle from raw input (inverse dynamic and trajectory) and position control output for comparison.
 
 5. Forward Kinematics:
    - Transform the robot’s joint space variables (q_1, q_2, q_3) back into task-space coordinates (x, y, phi).
@@ -74,7 +77,7 @@ C. Visualization
 
 6. Inverse Dynamics:
    - Calculate the required joint torques based on the arm's weight and dynamics.
-   - Focus on extracting torque values for analysis without implementing control efforts.
+   - Focus on extracting torque values for analysis in form of a linegraph.
 
 ### Progress
 ![Project-Kinematics (5)](https://github.com/user-attachments/assets/a9a86e5c-f1cd-41e3-aa6e-1093edf6c914)
@@ -88,7 +91,7 @@ C. Visualization
 - **Forward Kinematics**
   - Applied to calculate the end-effector position and validate the model, especially since MediaPipe inputs with varying scales cannot be directly compared.
 - **Inverse Dynamics**
-  - Calculates the torque and forces required for motion to adhere to trajectory planning, ensuring physical feasibility and system stability.
+  - Calculates the torque and forces required for real-world motion, only visualized in linegraph in this project.
 ---
 ## Installation
  Use `pip` to install the libraries. Open a terminal and run the following commands
