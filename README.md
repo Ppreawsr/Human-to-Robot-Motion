@@ -5,7 +5,9 @@ This project focuses on simulating a robotic arm's movement based on human arm m
 **This project is a part of FRA333 Kinematics of Robotics System, Institute of Field Robotics, King Mongkut’s University of Technology Thonburi**
 ## Overview
 ### Transformation of Human Movement to Robot Motion Demo
-// demo picture 
+
+https://github.com/user-attachments/assets/0d501b27-6180-4bc1-8208-0573c5746edb
+
 ### System Diagram / System Overview (Function and Argument)
 // diagram picture
 ### Objectives
