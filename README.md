@@ -463,7 +463,9 @@ Overall :
 	
 When there is a movement of the human arm with specified coordinates (x, y), the model calculates the Inverse Kinematics using the (x, y) coordinates of the human arm. The result is q1, q2, q3. The model uses the q values of the human arm to control the movement of a 3DOF robotic arm. The 3DOF robotic arm then sends its q1, q2, q3 values back to be calculated in Forward Kinematics to verify whether the movement patterns of the human arm and the robotic arm match. The Forward Kinematics calculation produces (x, y) coordinates of the robotic arm, which are then compared with the (x, y) coordinates of the human arm movement. If the coordinates match, it indicates that the movement is correct.
 - Calculate the Forward Kinematics to obtain the (x, y) coordinates of the robotic arm
-![Forward](https://github.com/user-attachments/assets/e4b13c52-8cec-4dba-a7fd-121b637b7c27)
+$$x = L_1 \cos(\theta_1) + L_2 \cos(\theta_1 + \theta_2) + L_3 \cos(\theta_1 + \theta_2 + \theta_3)$$
+
+$$y = L_1 \sin(\theta_1) + L_2 \sin(\theta_1 + \theta_2) + L_3 \sin(\theta_1 + \theta_2 + \theta_3)$$
 
 - Matlab 
 
@@ -490,54 +492,55 @@ Find Inverse Dynamic of the robot by using Euler Method
 
 **Equations of Motion**
 
-![image](https://github.com/user-attachments/assets/c22258fd-9338-4fe3-bf4f-3abc9f53a941)
+$$M(q)\ddot{q} + B(q)\dot{q} + g(q) = \tau$$
+
 
 Where 
-   - M(q) is an inertia matrix
-   - B(q,qdot) is a coriolis and centrifugal matrix
-   - g(q) is gravity
+   - $M(q)$ is an inertia matrix
+   - $B(q,qdot)$ is a coriolis and centrifugal matrix
+   - $g(q)$ is gravity
 
 **Find M(q)**
 
-M(1, 1) = I(1) + I(2) + I(3) + m(2)*L(1)^2 + m(3)*(L(1)^2 + L(2)^2 + 2*L(1)*L(2)*c2);
-
-M(1, 2) = I(2) + I(3) + m(3)*(L(2)^2 + L(1)*L(2)*c2);
-
-M(1, 3) = I(3);
-
-M(2, 1) = M(1, 2);
-
-M(2, 2) = I(2) + I(3) + m(3)*L(2)^2;
-
-M(2, 3) = I(3);
-
-M(3, 1) = M(1, 3);
-
-M(3, 2) = M(2, 3);
-
-M(3, 3) = I(3);
+    M(1, 1) = I(1) + I(2) + I(3) + m(2)*L(1)^2 + m(3)*(L(1)^2 + L(2)^2 + 2*L(1)*L(2)*c2);
+    
+    M(1, 2) = I(2) + I(3) + m(3)*(L(2)^2 + L(1)*L(2)*c2);
+    
+    M(1, 3) = I(3);
+    
+    M(2, 1) = M(1, 2);
+    
+    M(2, 2) = I(2) + I(3) + m(3)*L(2)^2;
+    
+    M(2, 3) = I(3);
+    
+    M(3, 1) = M(1, 3);
+    
+    M(3, 2) = M(2, 3);
+    
+    M(3, 3) = I(3);
 
 **Find B(q,qdot)**
 
-B(1, 2) = -m(3)*L(1)*L(2)*s2*qd(2);
-
-B(1, 3) = -m(3)*L(1)*L(2)*s2*qd(3);
-
-B(2, 1) = m(3)*L(1)*L(2)*s2*qd(1);
-
-B(2, 3) = -m(3)*L(2)*L(3)*s3*qd(3);
-
-B(3, 1) = m(3)*L(1)*L(2)*s2*qd(1);
-
-B(3, 2) = m(3)*L(2)*L(3)*s3*qd(2);
+    B(1, 2) = -m(3)*L(1)*L(2)*s2*qd(2);
+    
+    B(1, 3) = -m(3)*L(1)*L(2)*s2*qd(3);
+    
+    B(2, 1) = m(3)*L(1)*L(2)*s2*qd(1);
+    
+    B(2, 3) = -m(3)*L(2)*L(3)*s3*qd(3);
+    
+    B(3, 1) = m(3)*L(1)*L(2)*s2*qd(1);
+    
+    B(3, 2) = m(3)*L(2)*L(3)*s3*qd(2);
 
 **Find G(q)**
 
-G(1) = -g * (m(1)*L(1)/2*c1 + m(2)*(L(1)*c1 + L(2)/2*c12) + m(3)*(L(1)*c1 + L(2)*c12 + L(3)/2*c123));
-
-G(2) = -g * (m(2)*L(2)/2*c12 + m(3)*(L(2)*c12 + L(3)/2*c123));
-
-G(3) = -g * m(3)*L(3)/2*c123;
+    G(1) = -g * (m(1)*L(1)/2*c1 + m(2)*(L(1)*c1 + L(2)/2*c12) + m(3)*(L(1)*c1 + L(2)*c12 + L(3)/2*c123));
+    
+    G(2) = -g * (m(2)*L(2)/2*c12 + m(3)*(L(2)*c12 + L(3)/2*c123));
+    
+    G(3) = -g * m(3)*L(3)/2*c123;
 
 These are codes we used in order to find the Inverse kinematic of the robot.
 ![image](https://github.com/user-attachments/assets/3f686d61-593e-432e-befd-7c8135673265)
