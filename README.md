@@ -82,16 +82,18 @@ C. Visualization
 ### Progress
 ![Project-Kinematics (5)](https://github.com/user-attachments/assets/a9a86e5c-f1cd-41e3-aa6e-1093edf6c914)
 ### Description
-- **Inverse Kinematics**
-  - Used to transform MediaPipe input into configuration space for robotic systems, enabling accurate mapping of human motion to robotic actuators.
-- **Trajectory Planning**
-  - Focused on controlling the movement of robotic systems to follow a predefined path, ensuring efficiency and accuracy.
-- **Robot Modeling**
-  - Used to create simulation models for testing purposes, enabling iterative improvements and robust system design.
+- **Media Pipe** 100%
+  - All requirement are met. (capture input, preprocess, real-time communicate) 
+- **Inverse Kinematics** 100%
+  - All requirement are met. (transformed MediaPipe input into configuration space for robotic systems)
+- **Trajectory Planning** 100%
+  - All requirement are met. (controlling the movement of robotic systems to follow a predefined path, ensuring efficiency and accuracy.)
+- **Robot Modeling** 85%
+  - Partially met requirement (success in angular position input integration, lacking due to singularity issue when applying velocity or torque)
 - **Forward Kinematics**
-  - Applied to calculate the end-effector position and validate the model, especially since MediaPipe inputs with varying scales cannot be directly compared.
-- **Inverse Dynamics**
-  - Calculates the torque and forces required for real-world motion, only visualized in linegraph in this project.
+  - All requirement are met. (Applied to calculate the end-effector position and validate the model, especially since MediaPipe inputs with varying scales cannot be directly compared.)
+- **Inverse Dynamics** 80%
+  - Partially met requirement (calculates the torque and forces required for real-world motion and visualized, lacking validation with real model due to model issue.)
 ---
 ## Installation
  Use `pip` to install the libraries. Open a terminal and run the following commands
