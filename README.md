@@ -215,6 +215,55 @@ Singularities
 
 ---
 ### **Robot Modeling**
+These are steps to create the planar 3-DOF manipulator by using Simscape from Simulink.
+
+**Step 1** : Design the robot
+
+![step-1](https://github.com/user-attachments/assets/9a4d4b76-5fc7-4ae8-a3f2-6980055adfd9)
+
+These are the first designs of the planar 3-DOF manipulator which looks like a human arm. The model consists of 3 joints and 3 links.
+- Link 1 is 5 meters from joint 1 
+- Link 2 is 4 meters from joint 2
+- Link 3 is 1 meters from joint 3
+
+**Step 2** : Using Simulink’s Library called “ Simscape ” to create the model 
+
+![image](https://github.com/user-attachments/assets/7779f63c-32f0-49be-bcc5-829bb3dba433)
+
+First select “ Utilities ” and find a box named ‘ Solver Configuration ’. Then select “ Multibody ” next, select “ Frames and Transforms ” and “ Utilities ” find boxes named ‘ World Frame ’ , ‘ Reference Frame ’ and ‘ Mechanism Configuration ’ After finding all these boxes, place them on the workspace.
+
+![image](https://github.com/user-attachments/assets/42710db8-cbd7-4f33-ba67-6facec0c5985)
+
+These boxes are the core of creating Modeling without them, the physical modeling environment will not function, as they establish the simulation's framework and relationships between components. Also you can check your World frame and Reference frame by pressing play button. 
+
+![image](https://github.com/user-attachments/assets/2302b77f-24c9-4235-909a-8af266f768ad)
+
+**Step 3** : Using “ Rigid Transform block ” to transform from world frame into your desired frame example, rotate the frame by rotating about 90 degrees about X axis.
+
+![image](https://github.com/user-attachments/assets/8340d83b-c236-4be5-8c70-a985840a78da)
+
+You can apply a circular solid block to see how the frame changes like this picture below !
+
+![image](https://github.com/user-attachments/assets/8f723b47-6f8b-4bc6-81b3-214133e21c55)
+
+**Step 4** : After adjusting the frame you want, now add a block called ‘ Revolute Joint ’(Blue highlight on the right). This block has many function to play with such as state target or equilibrium but the key is this block can make your circular solid block rotate
+![image](https://github.com/user-attachments/assets/f76d33d7-a114-4c06-9065-c8fede47727a)
+
+### **Model Overview**
+
+![model-overview](https://github.com/user-attachments/assets/ea92214d-75c4-442d-a83f-8b79d69e1225)
+
+![image](https://github.com/user-attachments/assets/8adf25d7-48d5-4010-a6f1-9a532c107220)
+
+There are 6 solid blocks :
+1. Brick Solid
+	- L1 : mass is 1 kg length is 5 meters 
+	- L2 : mass is 1 kg length is 4 meters 
+	- L3 : mass is 1 kg length is 1 meters 
+2. Cylindrical Solid
+	- J1 : mass is 0 kg also is a rotating joint
+	- J2 : mass is 0 kg also is a rotating joint
+	- J3 : mass is 0 kg also is a rotating joint
 
 
 ---
