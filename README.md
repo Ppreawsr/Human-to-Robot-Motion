@@ -9,7 +9,8 @@ This project focuses on simulating a robotic arm's movement based on human arm m
 https://github.com/user-attachments/assets/0d501b27-6180-4bc1-8208-0573c5746edb
 
 ### System Diagram / System Overview (Function and Argument)
-// diagram picture
+![System_Diagram_Kinematic_Project_2](https://github.com/user-attachments/assets/5d19a23b-62d3-466f-ad21-9005602aa3e5)
+
 ### Objectives
 - To study the transformation of human arm movements into the simulated movement of a robotic arm model.
 - To explore the use of MediaPipe and MATLAB software.
@@ -408,7 +409,7 @@ This is well within the range of human-like motion.
 
 #### **Trajectory Summary (calculation)**
 
-1. Moment of Inertia
+1. **Moment of Inertia**
 $$I_{\text{total}} = >20 \, \text{kg} \cdot \text{m}^2$$
 
 2. **Maximum Angular Acceleration**:
@@ -423,6 +424,36 @@ $$v_{\text{linear}} = \omega_{\text{max}} \cdot L = 0.5 \cdot 5 = 2.5 \, \text{m
 ![Raw_Traject_input_output](https://github.com/user-attachments/assets/b94a4482-791d-45aa-a542-1c237614440a)
 ---
 #### **Trajectory Performance Test**
+#### **Position**
+![image-removebg-preview](https://github.com/user-attachments/assets/f69ae0b1-d3c1-4f45-9eb5-c9d4a19459c0)
+
+As a result, 
+
+Input/Reference signal :
+   
+   - Trajectory is slightly delayed after Raw input.
+
+Output (PID) : 
+   - Trajectory is seen smoother and slightly faster than raw output 
+
+Overall : 
+   - Trajectory is better but clear different is hard to see, proceed to velocity comparison
+
+#### **Velocity**
+![Project-Kinematics (6)](https://github.com/user-attachments/assets/a8ff9468-657e-485b-af24-6d0a2287c643)
+
+For velocity we use line graph for measurement 
+
+Input/Reference signal :
+   - Trajectory is very smooth compared to fluctuating raw signal
+
+Output (PID) : 
+   - At steady stage Raw signal and Trajectory are of similar length, Trajectory is slightly more smooth
+   - However there are significant extreme value change when change occur 
+
+Overall : 
+   - Trajectory output is effective for smoothening velocity
+   - Thus, concluded.
 
 
 ---
