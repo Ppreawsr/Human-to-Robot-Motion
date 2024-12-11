@@ -471,12 +471,80 @@ When there is a movement of the human arm with specified coordinates (x, y), the
 
 ![Screenshot 2024-12-11 144355](https://github.com/user-attachments/assets/16996204-952b-4114-8bb9-365032dd62b7)
 
-
 It was found that incorporating the trajectory into the model resulted in a high error value during the initial phase, which gradually approached zero over time.
+
 ---
 
 
 ### **Inverse Dynamics Integration**
+Find Inverse Dynamic of the robot by using Euler Method
+
+**Defined Parameters**
+   - L1 = 5m and mass is 1kg
+   - L2 = 4m and mass is 1kg
+   - L3 = 1m and mass is 1kg
+   - g = gravity 9.81 m/s2
+   - Joint Angles, Joint Velocities, Joint Accelerations
+
+**Equations of Motion**
+
+![image](https://github.com/user-attachments/assets/c22258fd-9338-4fe3-bf4f-3abc9f53a941)
+
+Where 
+   - M(q) is an inertia matrix
+   - B(q,qdot) is a coriolis and centrifugal matrix
+   - g(q) is gravity
+
+**Find M(q)**
+
+M(1, 1) = I(1) + I(2) + I(3) + m(2)*L(1)^2 + m(3)*(L(1)^2 + L(2)^2 + 2*L(1)*L(2)*c2);
+
+M(1, 2) = I(2) + I(3) + m(3)*(L(2)^2 + L(1)*L(2)*c2);
+
+M(1, 3) = I(3);
+
+M(2, 1) = M(1, 2);
+
+M(2, 2) = I(2) + I(3) + m(3)*L(2)^2;
+
+M(2, 3) = I(3);
+
+M(3, 1) = M(1, 3);
+
+M(3, 2) = M(2, 3);
+
+M(3, 3) = I(3);
+
+**Find B(q,qdot)**
+
+B(1, 2) = -m(3)*L(1)*L(2)*s2*qd(2);
+
+B(1, 3) = -m(3)*L(1)*L(2)*s2*qd(3);
+
+B(2, 1) = m(3)*L(1)*L(2)*s2*qd(1);
+
+B(2, 3) = -m(3)*L(2)*L(3)*s3*qd(3);
+
+B(3, 1) = m(3)*L(1)*L(2)*s2*qd(1);
+
+B(3, 2) = m(3)*L(2)*L(3)*s3*qd(2);
+
+**Find G(q)**
+
+G(1) = -g * (m(1)*L(1)/2*c1 + m(2)*(L(1)*c1 + L(2)/2*c12) + m(3)*(L(1)*c1 + L(2)*c12 + L(3)/2*c123));
+
+G(2) = -g * (m(2)*L(2)/2*c12 + m(3)*(L(2)*c12 + L(3)/2*c123));
+
+G(3) = -g * m(3)*L(3)/2*c123;
+
+These are codes we used in order to find the Inverse kinematic of the robot.
+![image](https://github.com/user-attachments/assets/3f686d61-593e-432e-befd-7c8135673265)
+
+The torque calculated through inverse dynamics was tested, and the graph lacked smoothness during periods of significant movement. However, the values were relatively stable and formed a realistic pattern consistent with the motion of the human arm.
+
+![image-DY](https://github.com/user-attachments/assets/3daea5e5-dbc8-4d38-bf49-3d55d163563e)
+
+The torque values were then tested on the model, and it was found that the model came to a halt and could not move due to the occurrence of singularity. It is hypothesized that this issue arose because the model was not well-designed, such as errors in frame orientation or restrictions within the Simulink system that may have caused the singularity.
 
 ----
 
