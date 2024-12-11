@@ -113,13 +113,32 @@ This process includes capturing 2D-coordinate from the human arm, preprocessing 
 2. Processing
 
    input is then preprocessed with with moving average for noise reduction
-![code-processing](https://github.com/user-attachments/assets/56a6c661-5855-413a-a399-e4dc2c27daa9)
-3. Model Mapping
+```
+    # Update sliding window arrays
+      s_raw[0][i], s_raw[1][i], s_raw[2][i] = shoulder_raw.x, shoulder_raw.y, shoulder_raw.z
+      e_raw[0][i], e_raw[1][i], e_raw[2][i] = elbow_raw.x, elbow_raw.y, elbow_raw.z
+      w_raw[0][i], w_raw[1][i], w_raw[2][i] = wrist_raw.x, wrist_raw.y, wrist_raw.z
+      ef_raw[0][i], ef_raw[1][i], ef_raw[2][i] = endf_raw.x, endf_raw.y, endf_raw.z
+      i += 1
+
+      if i >= i_max:
+         i = 0
+
+    # Transmit data based on delay
+      current_time = time.time()
+      if current_time - last_transmission_time >= transmission_delay:
+         shoulder = (sum(s_raw[0])/i_max, sum(s_raw[1])/i_max, sum(s_raw[2])/i_max)
+         elbow = (sum(e_raw[0])/i_max, sum(e_raw[1])/i_max, sum(e_raw[2])/i_max)
+         wrist = (sum(w_raw[0])/i_max, sum(w_raw[1])/i_max, sum(w_raw[2])/i_max)
+         endf = (sum(ef_raw[0])/i_max, sum(ef_raw[1])/i_max, sum(ef_raw[2])/i_max)
+```
+		
+4. Model Mapping
 
    Calculate unit vector and adjust input’s scale to Transform the abstract 2D model into a real-world robotic arm model
 ![Project-Kinematics (4)](https://github.com/user-attachments/assets/36080f6b-964e-48d3-aacd-a40583a910e0)
 The newly created model map is now of the same scale as model robot, with human input’s unit vector (in reference to shoulder frame) 
-4. Real time communication with Simulink
+5. Real time communication with Simulink
 
    The processed input is then sent to Matlab’s Simulink in real time using UDP every
 ![Project-Kinematics (3)](https://github.com/user-attachments/assets/35be6119-c24a-4762-a723-636cbeb84b7a)
