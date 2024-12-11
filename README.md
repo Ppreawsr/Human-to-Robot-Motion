@@ -1,8 +1,31 @@
 
+
 # Transformation of Human Movement to Robot Motion
 This project focuses on simulating a robotic arm's movement based on human arm motion tracked by a camera. MediaPipe detects motion and sends joint data to a MATLAB/SIMULINK model. Inverse Kinematics calculates joint angles, verified by Forward Kinematics. Trajectory planning and velocity control improve movement efficiency, with results showing joint positions, angles, and velocities, along with a visual movement display.
 
 **This project is a part of FRA333 Kinematics of Robotics System, Institute of Field Robotics, King Mongkut’s University of Technology Thonburi**
+
+## Table of Contents
+
+- [Overview](#overview)
+   * [Transformation of Human Movement to Robot Motion Demo](#transformation-of-human-movement-to-robot-motion)
+   * [Description](#description)
+- [Installation](#installation)
+- [Methodology](#methodology)
+   * [Image Capture](#image-capture)
+   * [Calculation](#calculation)
+   * [Motion Capture](#motion-capture)
+	   * [Inverse Kinematics](#inverse-kinematics)
+	   * [Trajectory Planning](#trajectory-planning)
+	   * [Motion Control](#motion-control)
+	   * [Inverse Dynamics](#inverse-dynamics)
+	   * [Robot Modeling](#robot-modeling)
+	   * [Forward Kinematics](#forward-kinematics)
+   * [ 3D Visualization](#3d-visualization)
+- [User Guide](#user-guide)
+- [Conclusion](#conclusion)
+- [References](#references)
+- 
 ## Overview
 ### Transformation of Human Movement to Robot Motion Demo
 
@@ -66,27 +89,6 @@ C. Visualization
   - Applied to calculate the end-effector position and validate the model, especially since MediaPipe inputs with varying scales cannot be directly compared.
 - **Inverse Dynamics**
   - Calculates the torque and forces required for motion to adhere to trajectory planning, ensuring physical feasibility and system stability.
-## Table of Contents
-
-- [Overview](#overview)
-   * [Transformation of Human Movement to Robot Motion Demo](#transformation-of-human-movement-to-robot-motion)
-   * [Description](#description)
-- [Installation](#installation)
-- [Methodology](#methodology)
-   * [Image Capture](#image-capture)
-   * [Calculation](#calculation)
-   * [Motion Capture](#motion-capture)
-	   * [Inverse Kinematics](#inverse-kinematics)
-	   * [Trajectory Planning](#trajectory-planning)
-	   * [Motion Control](#motion-control)
-	   * [Inverse Dynamics](#inverse-dynamics)
-	   * [Robot Modeling](#robot-modeling)
-	   * [Forward Kinematics](#forward-kinematics)
-   * [ 3D Visualization](#3d-visualization)
-- [User Guide](#user-guide)
-- [Demo & Result](#demo-&-result)
-- [Conclusion](#conclusion)
-- [References](#references)
 ---
 ## Installation
  Use `pip` to install the libraries. Open a terminal and run the following commands
@@ -125,7 +127,7 @@ The newly created model map is now of the same scale as model robot, with human 
 
 
 ---
-### **Inverse Kinematics**
+### Inverse Kinematics
 ![2R_Planar_Manipulator](https://github.com/user-attachments/assets/ff68d60f-503d-445b-8ece-638ceb9dd275)
 
 Determine the joint angles $(\theta_1, \theta_2, \theta_3 )$ given the end-effector position $(x, y)$ and orientation $(\phi)$
@@ -217,7 +219,7 @@ Singularities
 
 
 ---
-### **Robot Modeling**
+### Robot Modeling
 These are steps to create the planar 3-DOF manipulator by using Simscape from Simulink.
 
 **Step 1** : Design the robot
@@ -273,7 +275,7 @@ There are 6 solid blocks :
 
 
 
-#### **Trajectory Planning**
+#### Trajectory Planning
 This trajectory part take input from inverse kinematic to use as reference position and calculate trajectory output
 
 - Goal :
@@ -457,7 +459,7 @@ Overall :
 
 
 ---
-### **Forward Kinematics**
+### Forward Kinematics
 	
 When there is a movement of the human arm with specified coordinates (x, y), the model calculates the Inverse Kinematics using the (x, y) coordinates of the human arm. The result is q1, q2, q3. The model uses the q values of the human arm to control the movement of a 3DOF robotic arm. The 3DOF robotic arm then sends its q1, q2, q3 values back to be calculated in Forward Kinematics to verify whether the movement patterns of the human arm and the robotic arm match. The Forward Kinematics calculation produces (x, y) coordinates of the robotic arm, which are then compared with the (x, y) coordinates of the human arm movement. If the coordinates match, it indicates that the movement is correct.
 - Calculate the Forward Kinematics to obtain the (x, y) coordinates of the robotic arm
