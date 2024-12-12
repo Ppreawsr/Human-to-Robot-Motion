@@ -219,7 +219,7 @@ Condition 1 : $det(J) = 0$
 - For a 3-DOF planar robot with link lengths L1, L2, L3​ and joint angles $θ1, θ2, θ3$
 the Jacobian matrix is:
 
-$$ J = \begin{bmatrix} \sin(\theta_1)(L_1 + L_2\cos(\theta_2)) - \sin(\theta_1 + \theta_2)L_2 & -\sin(\theta_1 + \theta_2)L_2 & 0 \\ \cos(\theta_1)(L_1 + L_2\cos(\theta_2)) + \cos(\theta_1 + \theta_2)L_2 & \cos(\theta_1 + \theta_2)L_2 & 0 \\ 0 & 0 & 0 \end{bmatrix} $$
+$$J = \begin{bmatrix} \sin(\theta_1)(L_1 + L_2\cos(\theta_2)) - \sin(\theta_1 + \theta_2)L_2 & -\sin(\theta_1 + \theta_2)L_2 & 0 \\ \cos(\theta_1)(L_1 + L_2\cos(\theta_2)) + \cos(\theta_1 + \theta_2)L_2 & \cos(\theta_1 + \theta_2)L_2 & 0 \\ 0 & 0 & 0 \end{bmatrix}$$
 
 
 $$det(J) = L_1L_2sin(θ_2)$$
